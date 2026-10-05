@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;125,700;125,800;125,900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
    Design tokens: every color comes from the Second Harvest logo
@@ -34,7 +34,7 @@
   --tan: #E5C093;          /* basket */
   --line: rgba(43, 51, 22, .12);
 
-  --font-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --font-display: "Archivo", "Arial Black", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --radius-lg: clamp(28px, 4vw, 56px);
@@ -60,6 +60,7 @@ body {
 }
 img { max-width: 100%; display: block; height: auto; }
 a { color: inherit; }
+h1, h2, h3, h4, .stat-num, .footer-word, .wordmark { font-stretch: 125%; }
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
 h1 b, h2 b, h3 b { font-weight: 800; }
 p { margin: 0; }
@@ -204,20 +205,24 @@ p { margin: 0; }
   padding: clamp(28px, 5vw, 64px) clamp(16px, 3vw, 40px) 0;
   isolation: isolate;
 }
-/* Two-column hero: photo slideshow on the left, logo + title on the right */
+/* Hero: big centered wordmark, then photo (left) + logo and copy (right) */
+.hero-kicker {
+  display: flex; justify-content: center; align-items: center; gap: 10px;
+  font-weight: 600; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+}
+.hero-kicker .spark { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+.wordmark {
+  font-family: var(--font-display); font-weight: 900; text-transform: uppercase; text-align: center;
+  line-height: .92; letter-spacing: 0; margin-top: clamp(12px, 1.6vw, 20px);
+  font-size: clamp(2.6rem, 6.3vw, 6.4rem); white-space: nowrap;
+}
 .hero-grid {
   display: grid; gap: clamp(28px, 4vw, 64px); align-items: center;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: "slides copy";
-  padding-bottom: clamp(24px, 4vw, 64px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "slides copy";
+  margin-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(32px, 4.5vw, 72px);
 }
 .hero-copy { grid-area: copy; text-align: center; display: flex; flex-direction: column; align-items: center; min-width: 0; }
-.wordmark {
-  font-family: var(--font-display); font-weight: 800; text-transform: uppercase; text-align: center;
-  line-height: .98; letter-spacing: .01em; margin-top: clamp(18px, 2.4vw, 30px);
-  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
-}
-.wordmark span { display: block; }
-.hero-logo-wrap { --logo: clamp(150px, 16vw, 240px); position: relative; display: flex; justify-content: center; z-index: 2; }
+.hero-logo-wrap { --logo: clamp(150px, 15vw, 220px); position: relative; display: flex; justify-content: center; z-index: 2; }
 .hero-logo {
   width: var(--logo); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 clamp(6px, .8vw, 10px) rgba(255, 253, 248, .35), 0 28px 50px -18px rgba(43, 51, 22, .55);
@@ -225,7 +230,7 @@ p { margin: 0; }
 }
 @keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
 .hero-tagline {
-  margin-top: clamp(16px, 2vw, 24px); max-width: 32ch;
+  margin-top: clamp(16px, 2vw, 24px); max-width: 30ch;
   font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; width: clamp(48px, 5vw, 84px); }
@@ -233,7 +238,7 @@ p { margin: 0; }
 .hero .doodle-b { right: calc(50% - var(--logo) / 2 - clamp(60px, 6.5vw, 104px)); top: 26%; transform: scaleX(-1); }
 .hero-actions {
   position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px;
-  margin-top: clamp(24px, 3vw, 40px);
+  margin-top: clamp(24px, 3vw, 36px);
 }
 .hero-cta { max-width: 100%; text-align: left; }
 .hero-badge {
@@ -246,12 +251,22 @@ p { margin: 0; }
 .hero-badge span { font-size: .85rem; color: var(--ink-2); }
 
 /* Slideshow */
+.photo-col { grid-area: slides; display: flex; justify-content: center; min-width: 0; position: relative; }
 .slideshow {
-  grid-area: slides; position: relative; margin: 0; min-width: 0;
-  border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1 / 1; max-height: 640px; width: 100%;
-  background: rgba(43, 51, 22, .25); box-shadow: 0 30px 60px -30px rgba(43, 51, 22, .6);
-  border: 6px solid rgba(255, 253, 248, .9);
+  position: relative; margin: 0; width: min(100%, 540px); aspect-ratio: 3 / 2;
+  border-radius: 22px; overflow: hidden; transform: rotate(-2.5deg);
+  background: var(--paper); border: 10px solid var(--paper);
+  box-shadow: 0 34px 60px -28px rgba(43, 51, 22, .7);
 }
+.slideshow .slide-track { border-radius: 14px; overflow: hidden; }
+.photo-col .tape {
+  position: absolute; z-index: 2; width: 110px; height: 30px; top: -12px; left: 50%;
+  transform: translateX(-50%) rotate(-6deg); background: rgba(238, 154, 90, .85); border-radius: 3px;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .3);
+}
+.photo-col .spark-deco { position: absolute; width: 26px; height: 26px; fill: var(--cream); stroke: none; opacity: .9; }
+.photo-col .spark-deco.s1 { left: 4%; bottom: -6%; }
+.photo-col .spark-deco.s2 { right: 6%; top: -10%; width: 18px; height: 18px; }
 .slide-track { display: flex; height: 100%; transition: transform .8s var(--ease); }
 .slide-track.no-anim { transition: none; }
 .slide { flex: 0 0 100%; height: 100%; margin: 0; }
@@ -271,12 +286,14 @@ p { margin: 0; }
 
 @media (max-width: 899px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "slides"; }
-  .slideshow { aspect-ratio: 4 / 3; }
+  .wordmark { white-space: normal; font-size: clamp(2.6rem, 12vw, 5rem); }
+  .wordmark span { display: block; }
 }
 @media (max-width: 860px) {
   .hero-actions { display: grid; justify-content: stretch; width: 100%; }
   .hero-badge { justify-self: center; }
   .hero .doodle { display: none; }
+  .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
 }
 
 /* Floating credentials card, like the partner badge under the reference hero */
@@ -676,6 +693,8 @@ p { margin: 0; }
 <section class="page" data-route="" data-title="Second Harvest | Student-led food recovery in Loudoun County" tabindex="-1" aria-labelledby="home-title">
 
   <div class="hero grain">
+    <p class="hero-kicker"><svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg> Youth-led &middot; Loudoun County, VA <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg></p>
+    <h1 class="wordmark" id="home-title"><span>Second</span> <span>Harvest</span></h1>
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="hero-logo-wrap">
@@ -683,7 +702,6 @@ p { margin: 0; }
           <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
           <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
         </div>
-        <h1 class="wordmark" id="home-title"><span>Second</span> <span>Harvest</span></h1>
         <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
         <div class="hero-actions">
           <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
@@ -695,6 +713,10 @@ p { margin: 0; }
       </div>
 
       <!-- Photo slideshow: add or remove <figure class="slide"> blocks to change the photos -->
+      <div class="photo-col">
+      <span class="tape" aria-hidden="true"></span>
+      <svg class="spark-deco s1" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark-deco s2" aria-hidden="true"><use href="#i-spark"/></svg>
       <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
         <div class="slide-track" aria-live="off">
           <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
@@ -707,6 +729,7 @@ p { margin: 0; }
           <button class="slide-pause" type="button" aria-label="Pause slideshow"><svg class="icon"><use href="#i-pause"/></svg></button>
         </div>
       </section>
+      </div>
     </div>
   </div>
 
