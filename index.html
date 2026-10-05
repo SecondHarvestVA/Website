@@ -215,12 +215,13 @@ p { margin: 0; }
   font-size: clamp(3.1rem, 13.6vw, 12.4rem);
 }
 .wordmark span { display: block; }
-.hero-photo-wrap { position: relative; display: flex; justify-content: center; margin-top: clamp(-96px, -5.6vw, -24px); z-index: 1; }
-.hero-photo {
-  width: min(100%, 660px); aspect-ratio: 4 / 3; object-fit: cover;
-  border-radius: 400px 400px 0 0; border: 8px solid rgba(255,255,255,.95); border-bottom: 0;
-  box-shadow: 0 -10px 40px -20px rgba(0,0,0,.4);
+.hero-art-wrap { position: relative; display: flex; justify-content: center; margin-top: clamp(-88px, -5.4vw, -28px); padding-bottom: clamp(24px, 4vw, 56px); z-index: 1; }
+.hero-art {
+  width: clamp(240px, 36vw, 500px); height: auto;
+  filter: drop-shadow(0 22px 26px rgba(43, 51, 22, .35));
+  animation: basket-in .9s var(--ease) both .1s;
 }
+@keyframes basket-in { from { opacity: 0; transform: translateY(40px) rotate(-3deg); } to { opacity: 1; transform: none; } }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; }
 .hero .doodle-a { left: max(4%, calc(50% - 470px)); top: 52%; width: clamp(64px, 9vw, 130px); }
 .hero .doodle-b { right: max(4%, calc(50% - 460px)); top: 44%; width: clamp(40px, 5vw, 70px); transform: scaleX(-1) rotate(-20deg); }
@@ -235,13 +236,12 @@ p { margin: 0; }
 .hero-badge span { font-size: .85rem; color: var(--ink-2); }
 @media (max-width: 860px) {
   .hero-cta, .hero-badge { position: static; margin: 0; }
-  .hero-actions { position: relative; z-index: 3; display: grid; gap: 12px; padding: 0 0 clamp(16px, 4vw, 28px); margin-top: -60px; }
-  .hero-photo { border-radius: 300px 300px 28px 28px; border-bottom: 8px solid rgba(255,255,255,.95); }
+  .hero-actions { position: relative; z-index: 3; display: grid; gap: 12px; padding: 0 0 clamp(16px, 4vw, 28px); margin-top: 0; }
   .hero .doodle-a { top: 38%; left: 2%; }
   .hero .doodle-b { display: none; }
   .hero-badge { justify-self: start; }
   .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
-  .hero-actions { margin-top: -40px; }
+  .hero-actions { margin-top: 0; }
 }
 @media (min-width: 861px) { .hero-actions { display: contents; } }
 
@@ -644,9 +644,9 @@ p { margin: 0; }
     <h1 class="wordmark" id="home-title"><span>Second</span><span>Harvest</span></h1>
     <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
     <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
-    <div class="hero-photo-wrap">
-      <img class="hero-photo" src="assets/team.jpg" width="1200" height="900" fetchpriority="high"
-           alt="A classroom of smiling students posing together with Second Harvest ambassadors after a lesson on food waste">
+    <div class="hero-art-wrap">
+      <img class="hero-art" src="assets/basket.png" width="466" height="424" fetchpriority="high"
+           alt="The Second Harvest basket: two loaves of bread in a woven basket marked with UN Sustainable Development Goal 2, Zero Hunger">
     </div>
     <div class="hero-actions">
       <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
