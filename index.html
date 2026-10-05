@@ -216,22 +216,21 @@ p { margin: 0; }
 }
 .wordmark span { display: block; }
 .wordmark-wrap { position: relative; width: fit-content; margin-inline: auto; }
-/* Rotating sticker, stuck onto the wordmark */
-.sticker {
-  position: absolute; right: -4%; top: -15%; width: clamp(92px, 12.5vw, 176px); aspect-ratio: 1;
-  transform: rotate(-10deg); z-index: 2;
+/* Full circle logo, overlapping the wordmark the way the dog does in the reference */
+.hero-logo-wrap { display: flex; justify-content: center; margin-top: clamp(-84px, -5.6vw, -22px); position: relative; z-index: 2; }
+.hero-logo {
+  width: clamp(200px, 27vw, 380px); aspect-ratio: 1; border-radius: 50%;
+  box-shadow: 0 0 0 clamp(6px, .8vw, 10px) rgba(255, 253, 248, .35), 0 28px 50px -18px rgba(43, 51, 22, .55);
+  animation: logo-in .9s var(--ease) both .1s;
 }
-.sticker svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 10px 18px rgba(43, 51, 22, .3)); }
-.sticker .ring { transform-origin: 50% 50%; animation: spin 22s linear infinite; }
-.sticker text { font: 700 15.5px var(--font-body); letter-spacing: .2em; text-transform: uppercase; fill: var(--ink); }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
 .hero-tagline {
   margin: clamp(22px, 3vw, 36px) auto 0; max-width: 34ch; text-align: center;
   font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; }
-.hero .doodle-a { left: max(3%, calc(50% - 640px)); top: 14%; width: clamp(56px, 7vw, 110px); }
-.hero .doodle-b { left: max(5%, calc(50% - 520px)); bottom: 30%; width: clamp(40px, 4.5vw, 64px); transform: rotate(150deg); }
+.hero .doodle-a { left: calc(50% - clamp(170px, 24vw, 330px)); top: 50%; width: clamp(56px, 7vw, 110px); }
+.hero .doodle-b { right: calc(50% - clamp(170px, 24vw, 330px)); top: 47%; width: clamp(56px, 7vw, 110px); transform: scaleX(-1); }
 .hero-actions {
   position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
   margin-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(16px, 3vw, 40px);
@@ -241,13 +240,14 @@ p { margin: 0; }
   background: var(--paper); color: var(--ink); border-radius: 999px; padding: 10px 26px 10px 10px;
   display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow); min-height: 76px;
 }
-.hero-badge img { width: 56px; height: 56px; border-radius: 50%; }
+.hero-badge .badge-ico { width: 56px; height: 56px; border-radius: 50%; background: var(--bread); color: var(--ink); display: grid; place-items: center; }
+.hero-badge .badge-ico .icon { width: 28px; height: 28px; }
 .hero-badge strong { display: block; font-size: .95rem; line-height: 1.2; }
 .hero-badge span { font-size: .85rem; color: var(--ink-2); }
 @media (max-width: 860px) {
   .hero-actions { display: grid; justify-content: stretch; }
   .hero-badge { justify-self: start; }
-  .hero .doodle, .sticker { display: none; }
+  .hero .doodle { display: none; }
   .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
 }
 
@@ -552,7 +552,6 @@ p { margin: 0; }
 .js .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .sticker .ring { animation: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
   .js .reveal { opacity: 1; transform: none; }
@@ -650,17 +649,9 @@ p { margin: 0; }
     <p class="hero-kicker"><svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg> Youth-led &middot; Loudoun County, VA <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg></p>
     <div class="wordmark-wrap">
       <h1 class="wordmark" id="home-title"><span>Second</span><span>Harvest</span></h1>
-      <div class="sticker" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="98" fill="#EE9A5A"/>
-          <g class="ring">
-            <path id="sticker-path" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" fill="none"/>
-            <text><textPath href="#sticker-path">Student-led &#10022; Zero hunger &#10022; Loudoun &#10022;</textPath></text>
-          </g>
-          <circle cx="100" cy="100" r="46" fill="#FFFDF8"/>
-          <use href="#i-spark" x="70" y="70" width="60" height="60" fill="#92431A"/>
-        </svg>
-      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
     </div>
     <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
     <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
@@ -668,7 +659,7 @@ p { margin: 0; }
     <div class="hero-actions">
       <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
       <div class="hero-badge">
-        <img src="assets/logo.jpg" alt="" width="56" height="56">
+        <span class="badge-ico"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
         <div><strong>3,000+ lbs recovered</strong><span>since 2023</span></div>
       </div>
     </div>
@@ -676,7 +667,7 @@ p { margin: 0; }
 
   <div class="creds">
     <span><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>501(c)(3) nonprofit</span>
-    <span><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>UN SDG 2: Zero Hunger</span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Student-led since 2023</span>
     <span><svg class="icon" aria-hidden="true"><use href="#i-handshake"/></svg>Delivering to Loudoun Hunger Relief</span>
   </div>
 
