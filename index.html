@@ -221,9 +221,9 @@ p { margin: 0; }
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: "slides copy";
   width: min(100%, 1180px); margin: clamp(28px, 3.6vw, 52px) auto 0; padding-bottom: clamp(48px, 5.5vw, 88px);
 }
-.hero-copy { grid-area: copy; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; position: relative; }
-.hero-intro { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 2.4vw, 32px); align-items: center; }
-.hero-logo-wrap { --logo: clamp(132px, 12.5vw, 184px); position: relative; display: flex; justify-content: center; z-index: 2; }
+.hero-copy { grid-area: copy; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; position: relative; }
+.hero-intro { display: flex; flex-direction: column; align-items: center; gap: clamp(20px, 2.4vw, 30px); }
+.hero-logo-wrap { --logo: clamp(190px, 18vw, 264px); position: relative; display: flex; justify-content: center; z-index: 2; }
 .hero-logo {
   width: var(--logo); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 clamp(5px, .7vw, 9px) rgba(255, 253, 248, .35), 0 24px 44px -18px rgba(43, 51, 22, .55);
@@ -231,21 +231,13 @@ p { margin: 0; }
 }
 @keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
 .hero-tagline {
-  max-width: 24ch; font-size: clamp(1.2rem, 1.75vw, 1.55rem); font-weight: 600; line-height: 1.38; text-wrap: balance;
+  max-width: 30ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; width: clamp(48px, 4.6vw, 76px); }
-.hero .doodle-a { right: 2%; top: -26%; transform: rotate(8deg); }
-.hero-actions { position: relative; z-index: 3; display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(28px, 3.2vw, 44px); }
+.hero .doodle-a { left: calc(50% + var(--logo) / 2 + 12px); top: 2%; transform: rotate(8deg); }
+.hero .doodle-b { right: calc(50% + var(--logo) / 2 + 12px); top: 14%; transform: scaleX(-1) rotate(8deg); }
+.hero-actions { position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: clamp(24px, 2.8vw, 36px); }
 .hero-cta { max-width: 100%; text-align: left; }
-.hero-badge {
-  position: absolute; z-index: 3; right: -14px; bottom: -30px; transform: rotate(2deg);
-  background: var(--paper); color: var(--ink); border-radius: 999px; padding: 8px 22px 8px 8px;
-  display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); text-align: left;
-}
-.hero-badge .badge-ico { width: 48px; height: 48px; border-radius: 50%; background: var(--bread); color: var(--ink); display: grid; place-items: center; }
-.hero-badge .badge-ico .icon { width: 24px; height: 24px; }
-.hero-badge strong { display: block; font-size: .95rem; line-height: 1.2; }
-.hero-badge span { font-size: .85rem; color: var(--ink-2); }
 
 /* Slideshow */
 .photo-col { grid-area: slides; justify-self: center; width: min(100%, 580px); min-width: 0; position: relative; }
@@ -290,8 +282,6 @@ p { margin: 0; }
   .hero-tagline { max-width: 30ch; }
   .hero-actions { justify-content: center; width: 100%; }
   .hero .doodle { display: none; }
-  .hero-badge { right: 50%; transform: translateX(50%); bottom: -28px; white-space: nowrap; }
-  .slide-controls { top: 12px; bottom: auto; left: 12px; }
   .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
 }
 
@@ -696,9 +686,10 @@ p { margin: 0; }
     <h1 class="wordmark" id="home-title"><span>Second</span> <span>Harvest</span></h1>
     <div class="hero-grid">
       <div class="hero-copy">
-        <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
         <div class="hero-intro">
           <div class="hero-logo-wrap">
+            <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+            <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
             <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
           </div>
           <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
@@ -713,10 +704,6 @@ p { margin: 0; }
       <span class="tape" aria-hidden="true"></span>
       <svg class="spark-deco s1" aria-hidden="true"><use href="#i-spark"/></svg>
       <svg class="spark-deco s2" aria-hidden="true"><use href="#i-spark"/></svg>
-      <div class="hero-badge">
-        <span class="badge-ico"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
-        <div><strong>3,000+ lbs recovered</strong><span>since 2023</span></div>
-      </div>
       <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
         <div class="slide-track" aria-live="off">
           <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
