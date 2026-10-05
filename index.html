@@ -244,19 +244,9 @@ p { margin: 0; }
 .photo-col { grid-area: slides; justify-self: center; width: min(100%, 580px); min-width: 0; position: relative; }
 .slideshow {
   position: relative; margin: 0; width: 100%; aspect-ratio: 3 / 2;
-  border-radius: 22px; overflow: hidden; transform: rotate(-2.5deg);
-  background: var(--paper); border: 10px solid var(--paper);
-  box-shadow: 0 34px 60px -28px rgba(43, 51, 22, .7);
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: 0 0 0 clamp(5px, .7vw, 9px) rgba(255, 253, 248, .35), 0 28px 50px -22px rgba(43, 51, 22, .55);
 }
-.slideshow .slide-track { border-radius: 14px; overflow: hidden; }
-.photo-col .tape {
-  position: absolute; z-index: 2; width: 110px; height: 30px; top: -12px; left: 50%;
-  transform: translateX(-50%) rotate(-6deg); background: rgba(238, 154, 90, .85); border-radius: 3px;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .3);
-}
-.photo-col .spark-deco { position: absolute; width: 26px; height: 26px; fill: var(--cream); stroke: none; opacity: .9; }
-.photo-col .spark-deco.s1 { left: -4%; top: 52%; }
-.photo-col .spark-deco.s2 { right: -4%; top: 8%; width: 18px; height: 18px; }
 .slide-track { display: flex; height: 100%; transition: transform .8s var(--ease); }
 .slide-track.no-anim { transition: none; }
 .slide { flex: 0 0 100%; height: 100%; margin: 0; }
@@ -701,9 +691,6 @@ p { margin: 0; }
 
       <!-- Photo slideshow: add or remove <figure class="slide"> blocks to change the photos -->
       <div class="photo-col">
-      <span class="tape" aria-hidden="true"></span>
-      <svg class="spark-deco s1" aria-hidden="true"><use href="#i-spark"/></svg>
-      <svg class="spark-deco s2" aria-hidden="true"><use href="#i-spark"/></svg>
       <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
         <div class="slide-track" aria-live="off">
           <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 7"><img src="assets/presenters-with-teacher.jpg" width="1400" height="1050" alt="Two Second Harvest ambassadors with a teacher in front of their Second Harvest presentation"></figure>
