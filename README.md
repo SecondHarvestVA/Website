@@ -11,7 +11,7 @@ Single-page website for **Second Harvest**, a youth-led 501(c)(3) nonprofit in L
 
 ## Fill in your links (one place)
 
-Near the bottom of `index.html`, find `const SITE = { ... }` and fill in:
+Near the bottom of `index.html`, find `const SITE = { ... }`. The email and Instagram are already set. Fill in the form links when you have them:
 
 | Key | What to put |
 |---|---|
@@ -20,15 +20,13 @@ Near the bottom of `index.html`, find `const SITE = { ... }` and fill in:
 | `chapterForm` | Chapter application form link (e.g. a Google Form) |
 | `ambassadorForm` | LCPS ambassador form link |
 
-Until a value is filled in, its buttons point to the Contact page.
+Until a form link is filled in, its buttons point to the Contact page.
 
 ## Other TODOs
 
 Search `index.html` for `TODO` to find:
 - The mission and vision wording (drafts, confirm or replace)
 - The classroom "Quick Facts" figures on the About page (confirm the sources)
-- Students per high school on the Impact page
-- Pounds recovered per year (to add a "Pounds by year" chart)
 - The year the chapters expanded (timeline)
 - Chapter eligibility, requirements and FAQ wording
 - Real testimonials (a copy-paste template is in the Testimonials section)
