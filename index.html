@@ -219,11 +219,11 @@ p { margin: 0; }
 .hero-grid {
   display: grid; gap: clamp(32px, 5vw, 80px); align-items: center;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: "slides copy";
-  width: min(100%, 1180px); margin: clamp(28px, 3.6vw, 52px) auto 0; padding-bottom: clamp(48px, 5.5vw, 88px);
+  width: min(100%, 1180px); margin: clamp(16px, 2.4vw, 32px) auto 0; padding-bottom: clamp(48px, 5.5vw, 88px);
 }
 .hero-copy { grid-area: copy; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; position: relative; }
 .hero-intro { display: flex; flex-direction: column; align-items: center; gap: clamp(20px, 2.4vw, 30px); }
-.hero-logo-wrap { --logo: clamp(190px, 18vw, 264px); position: relative; display: flex; justify-content: center; z-index: 2; }
+.hero-logo-wrap { --logo: clamp(220px, 22vw, 330px); position: relative; display: flex; justify-content: center; z-index: 2; }
 .hero-logo {
   width: var(--logo); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 clamp(5px, .7vw, 9px) rgba(255, 253, 248, .35), 0 24px 44px -18px rgba(43, 51, 22, .55);
@@ -231,7 +231,8 @@ p { margin: 0; }
 }
 @keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
 .hero-tagline {
-  max-width: 30ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
+  max-width: 34ch; margin: clamp(26px, 3vw, 40px) auto 0; text-align: center;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; width: clamp(48px, 4.6vw, 76px); }
 .hero .doodle-a { left: calc(50% + var(--logo) / 2 + 12px); top: 2%; transform: rotate(8deg); }
@@ -254,8 +255,8 @@ p { margin: 0; }
   box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .3);
 }
 .photo-col .spark-deco { position: absolute; width: 26px; height: 26px; fill: var(--cream); stroke: none; opacity: .9; }
-.photo-col .spark-deco.s1 { left: 4%; bottom: -6%; }
-.photo-col .spark-deco.s2 { right: 6%; top: -10%; width: 18px; height: 18px; }
+.photo-col .spark-deco.s1 { left: -4%; top: 52%; }
+.photo-col .spark-deco.s2 { right: -4%; top: 8%; width: 18px; height: 18px; }
 .slide-track { display: flex; height: 100%; transition: transform .8s var(--ease); }
 .slide-track.no-anim { transition: none; }
 .slide { flex: 0 0 100%; height: 100%; margin: 0; }
@@ -692,7 +693,6 @@ p { margin: 0; }
             <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
             <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
           </div>
-          <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
         </div>
         <div class="hero-actions">
           <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
@@ -706,16 +706,20 @@ p { margin: 0; }
       <svg class="spark-deco s2" aria-hidden="true"><use href="#i-spark"/></svg>
       <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
         <div class="slide-track" aria-live="off">
-          <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
-          <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4"><img src="assets/team.jpg" width="1200" height="900" alt="Students giving peace signs after a Second Harvest classroom visit"></figure>
-          <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4"><img src="assets/classroom-duo.jpg" width="1170" height="1055" alt="Two Second Harvest leaders present Quick Facts about hunger to young students"></figure>
-          <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4"><img src="assets/classroom-wide.jpg" width="1170" height="882" alt="An ambassador leads a lesson in front of a full elementary classroom"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 7"><img src="assets/presenters-with-teacher.jpg" width="1400" height="1050" alt="Two Second Harvest ambassadors with a teacher in front of their Second Harvest presentation"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 7"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 7"><img src="assets/classroom-quiz.jpg" width="1170" height="878" alt="Ambassadors run a quiz on global hunger for an elementary class"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 7"><img src="assets/team.jpg" width="1200" height="900" alt="Students giving peace signs after a Second Harvest classroom visit"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="5 of 7"><img src="assets/classroom-lab.jpg" width="1160" height="1044" alt="Second Harvest ambassadors present to a full classroom of elementary students"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="6 of 7"><img src="assets/classroom-duo.jpg" width="1170" height="1055" alt="Two Second Harvest leaders present Quick Facts about hunger to young students"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="7 of 7"><img src="assets/classroom-wide.jpg" width="1170" height="882" alt="An ambassador leads a lesson in front of a full elementary classroom"></figure>
         </div>
         <div class="slide-controls">
           <span class="slide-dots"></span>
           <button class="slide-pause" type="button" aria-label="Pause slideshow"><svg class="icon"><use href="#i-pause"/></svg></button>
         </div>
       </section>
+      <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
       </div>
     </div>
   </div>
@@ -854,9 +858,9 @@ p { margin: 0; }
 
   <section class="section" aria-label="Photos">
     <div class="wrap photo-strip reveal">
-      <img src="assets/classroom-wide.jpg" width="1170" height="882" loading="lazy" alt="An ambassador leads a lesson in front of a full elementary classroom">
-      <img src="assets/team.jpg" width="1200" height="900" loading="lazy" alt="Students giving peace signs after a Second Harvest visit">
-      <img src="assets/classroom-duo.jpg" width="1170" height="1055" loading="lazy" alt="Two Second Harvest leaders present Quick Facts about hunger to young students">
+      <img src="assets/classroom-quiz.jpg" width="1170" height="878" loading="lazy" alt="Ambassadors run a quiz on global hunger for an elementary class">
+      <img src="assets/presenters-with-teacher.jpg" width="1400" height="1050" loading="lazy" alt="Two Second Harvest ambassadors with a teacher in front of their Second Harvest presentation">
+      <img src="assets/classroom-lab.jpg" width="1160" height="1044" loading="lazy" alt="Second Harvest ambassadors present to a full classroom of elementary students">
     </div>
   </section>
 
