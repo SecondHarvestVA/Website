@@ -211,15 +211,13 @@ p { margin: 0; }
 .hero-kicker .spark { width: 14px; height: 14px; fill: currentColor; stroke: none; }
 .wordmark {
   font-family: var(--font-display); font-weight: 800; text-transform: uppercase; text-align: center;
-  line-height: .86; letter-spacing: -.02em; margin-top: clamp(14px, 2vw, 24px);
-  font-size: clamp(3.1rem, 13.6vw, 12.4rem);
+  line-height: .95; letter-spacing: .01em; margin-top: clamp(20px, 2.6vw, 32px);
+  font-size: clamp(2.3rem, 6.6vw, 5.8rem);
 }
-.wordmark span { display: block; }
-.wordmark-wrap { position: relative; width: fit-content; margin-inline: auto; }
-/* Full circle logo, centered under the wordmark */
-.hero-logo-wrap { display: flex; justify-content: center; margin-top: clamp(24px, 3.4vw, 48px); position: relative; z-index: 2; }
+/* Full circle logo on top, title underneath */
+.hero-logo-wrap { --logo: clamp(170px, 21vw, 300px); position: relative; display: flex; justify-content: center; z-index: 2; }
 .hero-logo {
-  width: clamp(200px, 27vw, 380px); aspect-ratio: 1; border-radius: 50%;
+  width: var(--logo); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 clamp(6px, .8vw, 10px) rgba(255, 253, 248, .35), 0 28px 50px -18px rgba(43, 51, 22, .55);
   animation: logo-in .9s var(--ease) both .1s;
 }
@@ -229,8 +227,8 @@ p { margin: 0; }
   font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
 .hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; }
-.hero .doodle-a { left: calc(50% - clamp(170px, 24vw, 330px)); top: 50%; width: clamp(56px, 7vw, 110px); }
-.hero .doodle-b { right: calc(50% - clamp(170px, 24vw, 330px)); top: 47%; width: clamp(56px, 7vw, 110px); transform: scaleX(-1); }
+.hero .doodle-a { left: calc(50% - var(--logo) / 2 - clamp(70px, 9vw, 130px)); top: 38%; width: clamp(56px, 7vw, 110px); }
+.hero .doodle-b { right: calc(50% - var(--logo) / 2 - clamp(70px, 9vw, 130px)); top: 30%; width: clamp(56px, 7vw, 110px); transform: scaleX(-1); }
 .hero-actions {
   position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
   margin-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(16px, 3vw, 40px);
@@ -248,7 +246,6 @@ p { margin: 0; }
   .hero-actions { display: grid; justify-content: stretch; }
   .hero-badge { justify-self: start; }
   .hero .doodle { display: none; }
-  .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
 }
 
 /* Floating credentials card, like the partner badge under the reference hero */
@@ -394,7 +391,7 @@ p { margin: 0; }
 }
 .page-hero .eyebrow { color: #fff; }
 .page-hero .eyebrow .spark { fill: #fff; }
-.page-hero h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(2.3rem, 8vw, 7rem); line-height: .92; letter-spacing: -.02em; margin-top: 18px; }
+.page-hero h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(2.3rem, 8vw, 7rem); line-height: .95; letter-spacing: .01em; margin-top: 18px; }
 .page-hero p { margin: 22px auto 0; max-width: 56ch; font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
 .page-hero .doodle { position: absolute; color: #fff; width: clamp(54px, 7vw, 100px); }
 .page-hero .doodle-a { left: 5%; bottom: 14%; }
@@ -646,15 +643,12 @@ p { margin: 0; }
 <section class="page" data-route="" data-title="Second Harvest | Student-led food recovery in Loudoun County" tabindex="-1" aria-labelledby="home-title">
 
   <div class="hero grain">
-    <p class="hero-kicker"><svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg> Youth-led &middot; Loudoun County, VA <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg></p>
-    <div class="wordmark-wrap">
-      <h1 class="wordmark" id="home-title"><span>Second</span><span>Harvest</span></h1>
-    </div>
     <div class="hero-logo-wrap">
       <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
+      <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+      <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
     </div>
-    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
-    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <h1 class="wordmark" id="home-title">Second Harvest</h1>
     <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
     <div class="hero-actions">
       <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
