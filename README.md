@@ -27,7 +27,6 @@ Until a form link is filled in, its buttons point to the Contact page.
 Search `index.html` for `TODO` to find:
 - The mission and vision wording (drafts, confirm or replace)
 - The classroom "Quick Facts" figures on the About page (confirm the sources)
-- The year the chapters expanded (timeline)
 - Chapter eligibility, requirements and FAQ wording
 - Real testimonials (a copy-paste template is in the Testimonials section)
 - More media links
