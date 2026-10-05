@@ -204,18 +204,20 @@ p { margin: 0; }
   padding: clamp(28px, 5vw, 64px) clamp(16px, 3vw, 40px) 0;
   isolation: isolate;
 }
-.hero-kicker {
-  display: flex; justify-content: center; align-items: center; gap: 10px;
-  font-weight: 600; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+/* Two-column hero: photo slideshow on the left, logo + title on the right */
+.hero-grid {
+  display: grid; gap: clamp(28px, 4vw, 64px); align-items: center;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: "slides copy";
+  padding-bottom: clamp(24px, 4vw, 64px);
 }
-.hero-kicker .spark { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+.hero-copy { grid-area: copy; text-align: center; display: flex; flex-direction: column; align-items: center; min-width: 0; }
 .wordmark {
   font-family: var(--font-display); font-weight: 800; text-transform: uppercase; text-align: center;
-  line-height: .95; letter-spacing: .01em; margin-top: clamp(20px, 2.6vw, 32px);
-  font-size: clamp(2.3rem, 6.6vw, 5.8rem);
+  line-height: .98; letter-spacing: .01em; margin-top: clamp(18px, 2.4vw, 30px);
+  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
 }
-/* Full circle logo on top, title underneath */
-.hero-logo-wrap { --logo: clamp(170px, 21vw, 300px); position: relative; display: flex; justify-content: center; z-index: 2; }
+.wordmark span { display: block; }
+.hero-logo-wrap { --logo: clamp(150px, 16vw, 240px); position: relative; display: flex; justify-content: center; z-index: 2; }
 .hero-logo {
   width: var(--logo); aspect-ratio: 1; border-radius: 50%;
   box-shadow: 0 0 0 clamp(6px, .8vw, 10px) rgba(255, 253, 248, .35), 0 28px 50px -18px rgba(43, 51, 22, .55);
@@ -223,28 +225,57 @@ p { margin: 0; }
 }
 @keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
 .hero-tagline {
-  margin: clamp(22px, 3vw, 36px) auto 0; max-width: 34ch; text-align: center;
-  font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
+  margin-top: clamp(16px, 2vw, 24px); max-width: 32ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
 }
-.hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; }
-.hero .doodle-a { left: calc(50% - var(--logo) / 2 - clamp(70px, 9vw, 130px)); top: 38%; width: clamp(56px, 7vw, 110px); }
-.hero .doodle-b { right: calc(50% - var(--logo) / 2 - clamp(70px, 9vw, 130px)); top: 30%; width: clamp(56px, 7vw, 110px); transform: scaleX(-1); }
+.hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; width: clamp(48px, 5vw, 84px); }
+.hero .doodle-a { left: calc(50% - var(--logo) / 2 - clamp(60px, 6.5vw, 104px)); top: 34%; }
+.hero .doodle-b { right: calc(50% - var(--logo) / 2 - clamp(60px, 6.5vw, 104px)); top: 26%; transform: scaleX(-1); }
 .hero-actions {
-  position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
-  margin-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(16px, 3vw, 40px);
+  position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px;
+  margin-top: clamp(24px, 3vw, 40px);
 }
-.hero-cta { max-width: 100%; }
+.hero-cta { max-width: 100%; text-align: left; }
 .hero-badge {
   background: var(--paper); color: var(--ink); border-radius: 999px; padding: 10px 26px 10px 10px;
-  display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow); min-height: 76px;
+  display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow); min-height: 76px; text-align: left;
 }
 .hero-badge .badge-ico { width: 56px; height: 56px; border-radius: 50%; background: var(--bread); color: var(--ink); display: grid; place-items: center; }
 .hero-badge .badge-ico .icon { width: 28px; height: 28px; }
 .hero-badge strong { display: block; font-size: .95rem; line-height: 1.2; }
 .hero-badge span { font-size: .85rem; color: var(--ink-2); }
+
+/* Slideshow */
+.slideshow {
+  grid-area: slides; position: relative; margin: 0; min-width: 0;
+  border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1 / 1; max-height: 640px; width: 100%;
+  background: rgba(43, 51, 22, .25); box-shadow: 0 30px 60px -30px rgba(43, 51, 22, .6);
+  border: 6px solid rgba(255, 253, 248, .9);
+}
+.slide-track { display: flex; height: 100%; transition: transform .8s var(--ease); }
+.slide-track.no-anim { transition: none; }
+.slide { flex: 0 0 100%; height: 100%; margin: 0; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide-controls {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; padding: 4px 6px 4px 12px; border-radius: 999px;
+  background: rgba(255, 253, 248, .92); box-shadow: var(--shadow); color: var(--ink);
+}
+.slide-dots { display: flex; align-items: center; }
+.slide-dot { width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; padding: 0; border-radius: 50%; }
+.slide-dot::before { content: ""; width: 9px; height: 9px; border-radius: 999px; background: rgba(43, 51, 22, .3); transition: width .3s var(--ease), background .3s; }
+.slide-dot[aria-current="true"]::before { width: 22px; background: var(--bread); }
+.slide-dot[aria-current="true"] { width: 36px; }
+.slide-pause { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--ink); color: var(--cream); cursor: pointer; display: grid; place-items: center; margin-left: 4px; }
+.slide-pause .icon { width: 16px; height: 16px; }
+
+@media (max-width: 899px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "slides"; }
+  .slideshow { aspect-ratio: 4 / 3; }
+}
 @media (max-width: 860px) {
-  .hero-actions { display: grid; justify-content: stretch; }
-  .hero-badge { justify-self: start; }
+  .hero-actions { display: grid; justify-content: stretch; width: 100%; }
+  .hero-badge { justify-self: center; }
   .hero .doodle { display: none; }
 }
 
@@ -570,6 +601,8 @@ p { margin: 0; }
     <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".9" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke-width="3"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z" fill="currentColor"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
@@ -643,19 +676,37 @@ p { margin: 0; }
 <section class="page" data-route="" data-title="Second Harvest | Student-led food recovery in Loudoun County" tabindex="-1" aria-labelledby="home-title">
 
   <div class="hero grain">
-    <div class="hero-logo-wrap">
-      <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
-      <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
-      <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
-    </div>
-    <h1 class="wordmark" id="home-title">Second Harvest</h1>
-    <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
-    <div class="hero-actions">
-      <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
-      <div class="hero-badge">
-        <span class="badge-ico"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
-        <div><strong>3,000+ lbs recovered</strong><span>since 2023</span></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-logo-wrap">
+          <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
+          <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+          <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+        </div>
+        <h1 class="wordmark" id="home-title"><span>Second</span> <span>Harvest</span></h1>
+        <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
+        <div class="hero-actions">
+          <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+          <div class="hero-badge">
+            <span class="badge-ico"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
+            <div><strong>3,000+ lbs recovered</strong><span>since 2023</span></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Photo slideshow: add or remove <figure class="slide"> blocks to change the photos -->
+      <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
+        <div class="slide-track" aria-live="off">
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4"><img src="assets/team.jpg" width="1200" height="900" alt="Students giving peace signs after a Second Harvest classroom visit"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4"><img src="assets/classroom-duo.jpg" width="1170" height="1055" alt="Two Second Harvest leaders present Quick Facts about hunger to young students"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4"><img src="assets/classroom-wide.jpg" width="1170" height="882" alt="An ambassador leads a lesson in front of a full elementary classroom"></figure>
+        </div>
+        <div class="slide-controls">
+          <span class="slide-dots"></span>
+          <button class="slide-pause" type="button" aria-label="Pause slideshow"><svg class="icon"><use href="#i-pause"/></svg></button>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -1424,6 +1475,44 @@ const SITE = {
     selectTab(document.getElementById("tab-ambassador"));
     setTimeout(() => document.getElementById("apply").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }), 50);
   }));
+
+  /* --- Hero slideshow: slides every 4s, loops, pauses on hover/focus ------ */
+  (function () {
+    const show = document.querySelector(".slideshow");
+    if (!show) return;
+    const track = show.querySelector(".slide-track");
+    const slides = [...track.children];
+    const n = slides.length;
+    const dotsWrap = show.querySelector(".slide-dots");
+    const pauseBtn = show.querySelector(".slide-pause");
+    track.appendChild(slides[0].cloneNode(true)).setAttribute("aria-hidden", "true");
+    let i = 0, timer = null, paused = reduceMotion, hovering = false;
+    const dots = slides.map((_, k) => {
+      const d = document.createElement("button");
+      d.type = "button"; d.className = "slide-dot"; d.setAttribute("aria-label", "Show photo " + (k + 1));
+      d.addEventListener("click", () => { go(k); restart(); });
+      dotsWrap.appendChild(d); return d;
+    });
+    function paint() { dots.forEach((d, k) => d.setAttribute("aria-current", k === i % n)); }
+    function go(k) { i = k; track.classList.remove("no-anim"); track.style.transform = "translateX(" + (-100 * i) + "%)"; paint(); }
+    track.addEventListener("transitionend", () => {
+      if (i === n) { track.classList.add("no-anim"); i = 0; track.style.transform = "translateX(0)"; paint(); }
+    });
+    function next() { if (document.hidden || !pages.find(p => p.dataset.route === "").classList.contains("is-active")) return; go(i + 1); }
+    function restart() { clearInterval(timer); timer = null; if (!paused && !hovering) timer = setInterval(next, 4000); }
+    function setPaused(v) {
+      paused = v;
+      pauseBtn.setAttribute("aria-label", v ? "Play slideshow" : "Pause slideshow");
+      pauseBtn.querySelector("use").setAttribute("href", v ? "#i-play" : "#i-pause");
+      restart();
+    }
+    pauseBtn.addEventListener("click", () => setPaused(!paused));
+    show.addEventListener("mouseenter", () => { hovering = true; restart(); });
+    show.addEventListener("mouseleave", () => { hovering = false; restart(); });
+    show.addEventListener("focusin", () => { hovering = true; restart(); });
+    show.addEventListener("focusout", () => { hovering = false; restart(); });
+    paint(); setPaused(paused);
+  })();
 
   /* --- Pictogram: 100 bowls x 10 meals ------------------------------------- */
   const pic = document.getElementById("pictogram");
