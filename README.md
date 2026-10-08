@@ -11,7 +11,7 @@ Single-page website for **Second Harvest**, a youth-led 501(c)(3) nonprofit in L
 
 ## Fill in your links (one place)
 
-Near the bottom of `index.html`, find `const SITE = { ... }`. The email and Instagram are already set. Fill in the form links when you have them:
+Near the bottom of `index.html`, find `const SITE = { ... }`. All four are set; change them there if a link ever changes:
 
 | Key | What to put |
 |---|---|
@@ -20,7 +20,7 @@ Near the bottom of `index.html`, find `const SITE = { ... }`. The email and Inst
 | `chapterForm` | Chapter application form link (e.g. a Google Form) |
 | `ambassadorForm` | LCPS ambassador form link |
 
-Until a form link is filled in, its buttons point to the Contact page.
+If a value is left empty, its buttons point to the Contact page.
 
 ## Other TODOs
 
