@@ -1,0 +1,1544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Harvest | Student-led food recovery in Loudoun County</title>
+<meta name="description" content="Second Harvest is a youth-led 501(c)(3) nonprofit in Loudoun County, VA. Student ambassadors recover surplus school cafeteria food for Loudoun Hunger Relief and teach younger students about food waste and hunger.">
+<meta name="theme-color" content="#858C4C">
+<meta property="og:title" content="Second Harvest">
+<meta property="og:description" content="Student-led food recovery in Loudoun County, VA. Start a chapter at your school.">
+<meta property="og:image" content="assets/team.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;125,700;125,800;125,900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Design tokens: every color comes from the Second Harvest logo
+   ========================================================================== */
+:root {
+  --cream: #FBF5E7;        /* logo background */
+  --paper: #FFFDF8;        /* cards */
+  --wheat: #F4E6CC;        /* alternate section background */
+  --sage: #979D61;         /* logo lettering */
+  --sage-deep: #858C4C;    /* hero panels (white display text passes 3:1) */
+  --sage-soft: #E4E6CF;
+  --ink: #2B3316;          /* body text: deep olive */
+  --ink-2: #4F5832;        /* secondary text */
+  --bread: #EE9A5A;        /* bread loaf: primary buttons and highlights */
+  --bread-hover: #E5843F;
+  --crust: #92431A;        /* bread scoring: doodles and accents */
+  --tan: #E5C093;          /* basket */
+  --line: rgba(43, 51, 22, .12);
+
+  --font-display: "Archivo", "Arial Black", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-lg: clamp(28px, 4vw, 56px);
+  --radius-md: 28px;
+  --radius-sm: 18px;
+  --max: 1240px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 84px;
+  --shadow: 0 18px 40px -22px rgba(43, 51, 22, .35);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; }
+h1, h2, h3, h4, .stat-num, .footer-word, .wordmark { font-stretch: 125%; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h1 b, h2 b, h3 b { font-weight: 800; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--crust); outline-offset: 3px; border-radius: 8px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 1000; background: var(--ink); color: var(--cream); padding: 12px 18px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251, 245, 231, .88);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.site-header.is-scrolled { border-bottom-color: var(--line); }
+.header-inner {
+  height: var(--header-h);
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+  width: min(100% - 2 * var(--gutter), 1440px); margin-inline: auto;
+}
+.nav-primary { display: flex; gap: clamp(16px, 2.2vw, 36px); }
+.nav-primary a, .nav-secondary a.text-link {
+  text-decoration: none; font-weight: 600; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: 10px 0; position: relative;
+}
+.nav-primary a::after, .nav-secondary a.text-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; background: var(--bread);
+  transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease);
+}
+.nav-primary a:hover::after, .nav-primary a[aria-current="page"]::after,
+.nav-secondary a.text-link:hover::after, .nav-secondary a.text-link[aria-current="page"]::after { transform: scaleX(1); }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; justify-self: center; }
+.brand img { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--sage-deep); letter-spacing: .02em; display: none; line-height: 1; }
+.nav-secondary { display: flex; align-items: center; justify-content: flex-end; gap: clamp(10px, 1.6vw, 20px); }
+.icon-btn {
+  width: 48px; height: 48px; border-radius: 50%; display: inline-grid; place-items: center;
+  color: var(--ink); text-decoration: none; transition: background .2s;
+}
+.icon-btn:hover { background: var(--sage-soft); }
+.menu-btn {
+  width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--bread); color: var(--ink);
+  display: inline-grid; place-items: center; cursor: pointer; transition: transform .2s var(--ease), background .2s;
+}
+.menu-btn:hover { background: var(--bread-hover); }
+.menu-btn:active { transform: scale(.95); }
+.menu-btn .icon { width: 26px; height: 26px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 52px; padding: 12px 28px; border-radius: 999px; border: 0;
+  font: 700 .85rem/1.2 var(--font-body); letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; transition: background .2s, transform .2s var(--ease), box-shadow .2s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--bread); color: var(--ink); }
+.btn-primary:hover { background: var(--bread-hover); }
+.btn-dark { background: var(--ink); color: var(--cream); }
+.btn-dark:hover { background: #1c220d; }
+.btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--cream); }
+.btn .icon { width: 18px; height: 18px; }
+
+/* "Pill with round arrow" link, straight from the reference */
+.pill-link {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 24px;
+  background: var(--paper); color: var(--ink); text-decoration: none; border-radius: 999px;
+  padding: 10px 10px 10px 32px; min-height: 76px; box-shadow: var(--shadow);
+  font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.2rem); transition: transform .25s var(--ease);
+}
+.pill-link .arrow {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--bread); display: grid; place-items: center;
+  transition: transform .25s var(--ease), background .2s; flex: none;
+}
+.pill-link:hover .arrow { transform: translateX(4px); background: var(--bread-hover); }
+.pill-link .arrow .icon { width: 24px; height: 24px; }
+
+/* Full-screen menu */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 100; background: var(--sage-deep); color: #fff;
+  display: flex; flex-direction: column; padding: 16px var(--gutter) 40px;
+  opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; overflow-y: auto;
+}
+.menu-overlay.is-open { opacity: 1; visibility: visible; }
+.menu-overlay .menu-top { display: flex; justify-content: space-between; align-items: center; height: calc(var(--header-h) - 16px); }
+.menu-overlay .menu-top img { width: 56px; height: 56px; border-radius: 50%; }
+.menu-overlay nav { margin-top: clamp(16px, 4vh, 48px); }
+.menu-overlay ol { list-style: none; margin: 0; padding: 0; counter-reset: m; }
+.menu-overlay li { counter-increment: m; border-bottom: 1px solid rgba(255,255,255,.22); }
+.menu-overlay li a {
+  display: flex; align-items: baseline; gap: 18px; padding: 14px 0; text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 5vw, 3.2rem); line-height: 1.1;
+  transition: transform .25s var(--ease), color .2s;
+}
+.menu-overlay li a::before { content: "0" counter(m); font: 600 .85rem var(--font-body); letter-spacing: .1em; opacity: .75; }
+.menu-overlay li a:hover, .menu-overlay li a[aria-current="page"] { transform: translateX(10px); color: var(--cream); }
+.menu-overlay li a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--bread); text-decoration-thickness: 4px; text-underline-offset: 8px; }
+.menu-overlay .menu-foot { margin-top: auto; padding-top: 32px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-weight: 600; }
+.menu-overlay .menu-foot a { text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
+
+@media (max-width: 1023px) {
+  .nav-primary, .nav-secondary .hide-md { display: none; }
+  .header-inner { grid-template-columns: auto 1fr; }
+  .brand { justify-self: start; }
+  .brand-name { display: block; }
+  .nav-secondary .btn { min-height: 48px; padding: 10px 20px; }
+}
+@media (max-width: 520px) {
+  :root { --header-h: 72px; }
+  .brand img { width: 48px; height: 48px; }
+  .brand-name { font-size: .9rem; }
+  .nav-secondary .btn { display: none; }
+  .menu-btn { width: 50px; height: 50px; }
+}
+
+/* ==========================================================================
+   Pages (one file, hash-routed). Without JS every page shows in sequence.
+   ========================================================================== */
+.js .page:not(.is-active) { display: none; }
+.page { padding-bottom: clamp(56px, 8vw, 120px); }
+.page:focus { outline: none; }
+
+/* ==========================================================================
+   Hero (home)
+   ========================================================================== */
+.grain {
+  background-color: var(--sage-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 50% 0%, #929958 0%, var(--sage-deep) 60%, #7A8144 100%);
+}
+.hero {
+  position: relative; margin: 12px auto 0; width: min(100% - 2 * var(--gutter), 1440px);
+  border-radius: var(--radius-lg); color: #fff; overflow: hidden;
+  padding: clamp(28px, 5vw, 64px) clamp(16px, 3vw, 40px) 0;
+  isolation: isolate;
+}
+/* Hero: big centered wordmark, then photo (left) + logo and copy (right) */
+.hero-kicker {
+  display: flex; justify-content: center; align-items: center; gap: 10px;
+  font-weight: 600; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+}
+.hero-kicker .spark { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+.wordmark {
+  font-family: var(--font-display); font-weight: 900; text-transform: uppercase; text-align: center;
+  line-height: .92; letter-spacing: 0; margin-top: clamp(12px, 1.6vw, 20px);
+  font-size: clamp(2.6rem, 6.3vw, 6.4rem); white-space: nowrap;
+}
+.hero-grid {
+  display: grid; gap: clamp(32px, 5vw, 80px); align-items: center;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-areas: "slides copy";
+  width: min(100%, 1180px); margin: clamp(16px, 2.4vw, 32px) auto 0; padding-bottom: clamp(48px, 5.5vw, 88px);
+}
+.hero-copy { grid-area: copy; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; position: relative; }
+.hero-intro { display: flex; flex-direction: column; align-items: center; gap: clamp(20px, 2.4vw, 30px); }
+.hero-logo-wrap { --logo: clamp(220px, 22vw, 330px); position: relative; display: flex; justify-content: center; z-index: 2; }
+.hero-logo {
+  width: var(--logo); aspect-ratio: 1; border-radius: 50%;
+  box-shadow: 0 0 0 clamp(5px, .7vw, 9px) rgba(255, 253, 248, .35), 0 24px 44px -18px rgba(43, 51, 22, .55);
+  animation: logo-in .9s var(--ease) both .1s;
+}
+@keyframes logo-in { from { opacity: 0; transform: translateY(36px) rotate(-12deg) scale(.92); } to { opacity: 1; transform: none; } }
+.hero-tagline {
+  max-width: 34ch; margin: clamp(26px, 3vw, 40px) auto 0; text-align: center;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 600; line-height: 1.4; text-wrap: balance;
+}
+.hero .doodle { position: absolute; z-index: 2; color: #fff; pointer-events: none; width: clamp(48px, 4.6vw, 76px); }
+.hero .doodle-a { left: calc(50% + var(--logo) / 2 + 12px); top: 2%; transform: rotate(8deg); }
+.hero .doodle-b { right: calc(50% + var(--logo) / 2 + 12px); top: 14%; transform: scaleX(-1) rotate(8deg); }
+.hero-actions { position: relative; z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: clamp(24px, 2.8vw, 36px); }
+.hero-cta { max-width: 100%; text-align: left; }
+
+/* Slideshow */
+.photo-col { grid-area: slides; justify-self: center; width: min(100%, 580px); min-width: 0; position: relative; }
+.slideshow {
+  position: relative; margin: 0; width: 100%; aspect-ratio: 3 / 2;
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: 0 0 0 clamp(5px, .7vw, 9px) rgba(255, 253, 248, .35), 0 28px 50px -22px rgba(43, 51, 22, .55);
+}
+.slide-track { display: flex; height: 100%; transition: transform .8s var(--ease); }
+.slide-track.no-anim { transition: none; }
+.slide { flex: 0 0 100%; height: 100%; margin: 0; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide-controls {
+  position: absolute; left: 14px; bottom: 14px;
+  display: flex; align-items: center; gap: 4px; padding: 4px 6px 4px 12px; border-radius: 999px;
+  background: rgba(255, 253, 248, .92); box-shadow: var(--shadow); color: var(--ink);
+}
+.slide-dots { display: flex; align-items: center; }
+.slide-dot { width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; padding: 0; border-radius: 50%; }
+.slide-dot::before { content: ""; width: 9px; height: 9px; border-radius: 999px; background: rgba(43, 51, 22, .3); transition: width .3s var(--ease), background .3s; }
+.slide-dot[aria-current="true"]::before { width: 22px; background: var(--bread); }
+.slide-dot[aria-current="true"] { width: 36px; }
+.slide-pause { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--ink); color: var(--cream); cursor: pointer; display: grid; place-items: center; margin-left: 4px; }
+.slide-pause .icon { width: 16px; height: 16px; }
+
+@media (max-width: 899px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "slides"; }
+  .wordmark { white-space: normal; font-size: clamp(2.6rem, 12vw, 5rem); }
+  .wordmark span { display: block; }
+  .hero-copy { align-items: center; text-align: center; }
+  .hero-intro { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .hero-tagline { max-width: 30ch; }
+  .hero-actions { justify-content: center; width: 100%; }
+  .hero .doodle { display: none; }
+  .hero-kicker { font-size: .68rem; letter-spacing: .12em; white-space: nowrap; }
+}
+
+/* Floating credentials card, like the partner badge under the reference hero */
+.creds {
+  position: relative; z-index: 5; margin: -34px auto 0; width: fit-content; max-width: calc(100% - 2 * var(--gutter));
+  background: var(--paper); border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; padding: 16px 28px;
+  font-size: .9rem; font-weight: 600; color: var(--ink-2);
+}
+.creds span { display: inline-flex; align-items: center; gap: 8px; }
+.creds .icon { color: var(--sage-deep); width: 18px; height: 18px; }
+@media (max-width: 860px) { .creds { margin-top: 20px; } }
+
+/* ==========================================================================
+   Section scaffolding
+   ========================================================================== */
+.section { padding-block: clamp(64px, 9vw, 128px); position: relative; }
+.section--wheat { background: var(--wheat); }
+.section--paper { background: var(--paper); }
+.curve-top { border-radius: 50% 50% 0 0 / clamp(36px, 7vw, 120px) clamp(36px, 7vw, 120px) 0 0; }
+.curve-bottom { border-radius: 0 0 50% 50% / 0 0 clamp(36px, 7vw, 120px) clamp(36px, 7vw, 120px); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--crust);
+}
+.eyebrow .spark { width: 12px; height: 12px; fill: var(--sage); stroke: none; }
+.h-xl { font-size: clamp(2rem, 4.6vw, 3.6rem); }
+.h-lg { font-size: clamp(1.7rem, 3.4vw, 2.7rem); }
+.h-md { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+.lede { font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: var(--ink-2); max-width: 62ch; }
+.center { text-align: center; }
+.center .lede { margin-inline: auto; }
+.stack > * + * { margin-top: 20px !important; }
+.stack-lg > * + * { margin-top: 32px !important; }
+
+/* Hand-drawn underline under the bold word, like the reference headlines */
+.scribble { position: relative; white-space: nowrap; display: inline-block; }
+.scribble svg { position: absolute; left: -2%; width: 104%; bottom: -.32em; height: .42em; overflow: visible; color: var(--bread); }
+.doodle-inline { width: 64px; color: var(--crust); }
+
+/* Mission statement */
+.mission { text-align: center; }
+.mission h2 { font-size: clamp(1.8rem, 4.4vw, 3.6rem); max-width: 22ch; margin-inline: auto; line-height: 1.25; }
+.mission p { margin: 28px auto 0; }
+
+/* Split intro */
+.split { display: grid; gap: clamp(28px, 5vw, 72px); align-items: center; }
+@media (min-width: 900px) { .split { grid-template-columns: 1.05fr 1fr; } .split.reverse > :first-child { order: 2; } }
+.title-with-doodle { position: relative; }
+@media (min-width: 900px) { .sticky-col { position: sticky; top: calc(var(--header-h) + 24px); } }
+.title-with-doodle .doodle-inline { position: absolute; right: 4%; top: -48px; }
+.photo-card { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow); }
+.photo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Cards */
+.grid { display: grid; gap: clamp(14px, 2vw, 24px); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.card {
+  background: var(--paper); border-radius: var(--radius-md); padding: clamp(24px, 3vw, 36px);
+  box-shadow: 0 1px 0 var(--line); position: relative;
+}
+.section--paper .card { background: var(--cream); }
+.card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+.card p { color: var(--ink-2); }
+.card-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--sage-soft); color: var(--sage-deep);
+  display: grid; place-items: center; margin-bottom: 20px;
+}
+.card-icon .icon { width: 26px; height: 26px; }
+
+/* Stats */
+.stats { display: grid; gap: clamp(12px, 1.6vw, 20px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+@media (max-width: 600px) { .stats { grid-template-columns: 1fr 1fr; } .stat { min-height: 140px; padding: 22px 18px; } .stat:first-child { grid-column: 1 / -1; } }
+.stat {
+  background: var(--paper); border-radius: var(--radius-md); padding: 28px 26px 26px;
+  display: flex; flex-direction: column; gap: 6px; min-height: 180px; justify-content: flex-end;
+}
+.stat-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.9rem, 2.7vw, 2.6rem); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.stat-label { font-weight: 600; color: var(--ink-2); }
+.stat--feature { background: var(--bread); }
+.stat--feature .stat-label { color: var(--ink); }
+.stat--sage { background: var(--sage-deep); }
+.stat--sage .stat-num, .stat--sage .stat-label { color: #fff; }
+
+/* Toggle (Chapter / Ambassador) styled after the dog/cat switch */
+.toggle {
+  display: inline-flex; gap: 6px; padding: 8px; background: var(--paper); border-radius: 999px; box-shadow: var(--shadow);
+  max-width: 100%;
+}
+.toggle button {
+  border: 0; background: transparent; cursor: pointer; border-radius: 999px; min-height: 60px;
+  padding: 10px 26px 10px 14px; display: inline-flex; align-items: center; gap: 12px;
+  font: 700 .9rem var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+  transition: background .25s, color .25s;
+}
+.toggle button .tog-ico { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--sage-soft); color: var(--sage-deep); transition: background .25s, color .25s; }
+.toggle button[aria-selected="true"] { background: var(--bread); color: var(--ink); }
+.toggle button[aria-selected="true"] .tog-ico { background: var(--paper); color: var(--crust); }
+.toggle button:not([aria-selected="true"]):hover { background: var(--cream); }
+@media (max-width: 520px) { .toggle { display: grid; grid-template-columns: 1fr 1fr; width: 100%; } .toggle button { padding: 8px 12px 8px 8px; font-size: .75rem; letter-spacing: .06em; gap: 8px; } .toggle button .tog-ico { width: 36px; height: 36px; } }
+.apply-panel { margin-top: 32px; }
+.apply-panel[hidden] { display: none; }
+.apply-card {
+  display: grid; gap: clamp(24px, 4vw, 56px); background: var(--paper); border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 56px);
+}
+@media (min-width: 900px) { .apply-card { grid-template-columns: 1.1fr 1fr; align-items: center; } }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.checklist li { display: flex; gap: 12px; align-items: flex-start; }
+.checklist .tick { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sage-soft); color: var(--sage-deep); display: grid; place-items: center; margin-top: 1px; }
+.checklist .tick .icon { width: 16px; height: 16px; stroke-width: 3; }
+.apply-aside { background: var(--sage-deep); color: #fff; border-radius: var(--radius-md); padding: clamp(24px, 3vw, 36px); position: relative; overflow: hidden; }
+.apply-aside p { color: #fff; }
+.apply-aside .btn { margin-top: 24px; }
+.apply-aside .note { font-size: .9rem; margin-top: 14px; opacity: .92; }
+
+/* Photo strip */
+.photo-strip { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); }
+.photo-strip img { border-radius: var(--radius-md); aspect-ratio: 1; object-fit: cover; width: 100%; }
+.photo-strip img:nth-child(2) { transform: translateY(32px); }
+@media (max-width: 700px) { .photo-strip { grid-template-columns: 1fr 1fr; } .photo-strip img:nth-child(3) { display: none; } .photo-strip img:nth-child(2) { transform: none; } }
+
+/* Big closing CTA band */
+.cta-band { border-radius: var(--radius-lg); color: #fff; padding: clamp(40px, 7vw, 96px) clamp(20px, 5vw, 72px); position: relative; overflow: hidden; text-align: center; }
+.cta-band h2 { font-size: clamp(2rem, 5.4vw, 4.4rem); font-weight: 800; text-transform: uppercase; line-height: .95; }
+.cta-band p { margin: 20px auto 32px; max-width: 54ch; font-size: 1.15rem; }
+.cta-band .doodle { position: absolute; color: #fff; width: clamp(60px, 8vw, 110px); }
+.cta-band .doodle-a { left: 6%; top: 16%; }
+.cta-band .doodle-b { right: 6%; bottom: 14%; transform: rotate(180deg); }
+.cta-band .btn-row { justify-content: center; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta-band .btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px #fff; }
+.cta-band .btn-ghost:hover { background: #fff; color: var(--ink); }
+
+/* ==========================================================================
+   Inner page header
+   ========================================================================== */
+.page-hero {
+  margin: 12px auto 0; width: min(100% - 2 * var(--gutter), 1440px); border-radius: var(--radius-lg);
+  color: #fff; padding: clamp(48px, 8vw, 110px) clamp(20px, 5vw, 72px); position: relative; overflow: hidden; text-align: center;
+}
+.page-hero .eyebrow { color: #fff; }
+.page-hero .eyebrow .spark { fill: #fff; }
+.page-hero h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(2.3rem, 8vw, 7rem); line-height: .95; letter-spacing: .01em; margin-top: 18px; }
+.page-hero p { margin: 22px auto 0; max-width: 56ch; font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
+.page-hero .doodle { position: absolute; color: #fff; width: clamp(54px, 7vw, 100px); }
+.page-hero .doodle-a { left: 5%; bottom: 14%; }
+.page-hero .doodle-b { right: 5%; top: 14%; transform: rotate(180deg); }
+@media (max-width: 700px) { .page-hero .doodle { display: none; } }
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+.founders { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--sage-soft); font-weight: 600; font-size: .95rem; }
+.chip--bread { background: #FBE0CB; }
+.mv { display: grid; gap: 20px; }
+@media (min-width: 800px) { .mv { grid-template-columns: 1fr 1fr; } }
+.mv .card { padding: clamp(28px, 4vw, 48px); }
+.mv .card:first-child { background: var(--sage-deep); color: #fff; }
+.mv .card:first-child p { color: #fff; }
+.mv .card:last-child { background: var(--bread); }
+.mv .card:last-child p { color: var(--ink); }
+.mv blockquote { margin: 16px 0 0; font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.7rem); line-height: 1.3; font-weight: 500; }
+.facts { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.fact { border-top: 3px solid var(--ink); padding-top: 18px; }
+.fact .stat-num { font-size: clamp(2rem, 3.4vw, 2.8rem); }
+.fact p { color: var(--ink-2); margin-top: 8px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li {
+  counter-increment: s; display: grid; grid-template-columns: auto 1fr; gap: 6px 22px;
+  background: var(--paper); border-radius: var(--radius-md); padding: clamp(20px, 3vw, 30px);
+}
+.section--paper .steps li { background: var(--cream); }
+.steps li::before {
+  content: counter(s); grid-row: span 2; width: 56px; height: 56px; border-radius: 50%; background: var(--bread);
+  display: grid; place-items: center; font: 800 1.3rem var(--font-display); color: var(--ink);
+}
+.steps h3 { font-size: 1.15rem; font-weight: 700; align-self: end; }
+.steps p { color: var(--ink-2); }
+.steps-wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+
+/* ==========================================================================
+   Impact
+   ========================================================================== */
+.viz-card { background: var(--paper); border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 48px); }
+.viz-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 24px; margin-bottom: 28px; }
+.viz-head p { color: var(--ink-2); max-width: 52ch; }
+.viz-key { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; font-weight: 600; color: var(--ink-2); }
+.viz-key .bowl { width: 20px; height: 20px; color: var(--sage-deep); }
+.pictogram { display: grid; grid-template-columns: repeat(20, 1fr); gap: clamp(3px, .6vw, 8px); }
+@media (max-width: 640px) { .pictogram { grid-template-columns: repeat(10, 1fr); } }
+.pictogram .bowl { width: 100%; height: auto; aspect-ratio: 1; color: var(--sage-deep); opacity: 0; transform: translateY(6px) scale(.8); transition: opacity .35s var(--ease), transform .35s var(--ease); }
+.pictogram.in .bowl { opacity: 1; transform: none; }
+.pictogram .bowl:hover { color: var(--crust); }
+.bars { display: grid; gap: 18px; }
+.bar-row { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 16px; }
+.bar-row .label { font-weight: 600; color: var(--ink-2); font-size: .95rem; }
+.bar-track { height: 56px; position: relative; }
+.bar {
+  height: 100%; border-radius: 4px 14px 14px 4px; background: var(--sage-deep); width: 0;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 16px;
+  color: #fff; font: 800 1.1rem var(--font-display); transition: width 1s var(--ease); min-width: 0;
+  cursor: default;
+}
+.bar--muted { background: var(--tan); color: var(--ink); }
+.bars.in .bar { width: var(--w); }
+.axis-note { font-size: .85rem; color: var(--ink-2); margin-top: 14px; }
+
+.school-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.school-list li {
+  display: flex; align-items: center; gap: 14px; background: var(--paper); border-radius: var(--radius-sm); padding: 16px 18px; font-weight: 600;
+}
+.section--paper .school-list li { background: var(--cream); }
+.school-list .dot { width: 40px; height: 40px; border-radius: 50%; background: var(--sage-soft); color: var(--sage-deep); display: grid; place-items: center; flex: none; }
+.school-list .dot .icon { width: 20px; height: 20px; }
+.school-list small { display: block; font-weight: 500; color: var(--ink-2); font-size: .85rem; }
+
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 27px; top: 8px; bottom: 8px; width: 2px; background: repeating-linear-gradient(var(--sage) 0 8px, transparent 8px 16px); }
+.timeline li { position: relative; padding: 0 0 36px 84px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline .when {
+  position: absolute; left: 0; top: 0; width: 56px; height: 56px; border-radius: 50%; background: var(--sage-deep); color: #fff;
+  display: grid; place-items: center; font: 800 .72rem/1.05 var(--font-display); text-align: center;
+}
+.timeline li:last-child .when { background: var(--bread); color: var(--ink); }
+.timeline h3 { font-size: 1.2rem; font-weight: 700; padding-top: 4px; }
+.timeline p { color: var(--ink-2); margin-top: 6px; max-width: 60ch; }
+
+/* ==========================================================================
+   Start a chapter
+   ========================================================================== */
+.faq { display: grid; gap: 12px; }
+.faq details { background: var(--paper); border-radius: var(--radius-sm); }
+.section--paper .faq details { background: var(--cream); }
+.faq summary {
+  list-style: none; cursor: pointer; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  font-weight: 700; font-size: 1.08rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .plus { width: 40px; height: 40px; border-radius: 50%; background: var(--sage-soft); display: grid; place-items: center; flex: none; transition: transform .25s var(--ease), background .2s; }
+.faq details[open] summary .plus { transform: rotate(45deg); background: var(--bread); }
+.faq details > div { padding: 0 24px 24px; color: var(--ink-2); max-width: 70ch; }
+
+/* ==========================================================================
+   Testimonials, news and contact
+   ========================================================================== */
+.quote-card { display: flex; flex-direction: column; gap: 18px; }
+.quote-card .mark { font: 800 4rem/0.6 var(--font-display); color: var(--bread); height: 28px; }
+.quote-card blockquote { margin: 0; font-size: 1.15rem; line-height: 1.55; }
+.quote-card footer { margin-top: auto; display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.quote-card footer small { display: block; font-weight: 500; color: var(--ink-2); }
+.quote-card .avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--sage-soft); display: grid; place-items: center; color: var(--sage-deep); flex: none; }
+.slot { border: 2px dashed rgba(43, 51, 22, .28); background: transparent !important; box-shadow: none; }
+.slot .mark { color: var(--sage); }
+.slot blockquote { color: var(--ink-2); }
+
+.media-card { display: flex; flex-direction: column; gap: 14px; text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s; }
+.media-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.media-card .outlet { font-weight: 700; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--crust); }
+.media-card h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+.media-card .meta { margin-top: auto; display: flex; justify-content: space-between; align-items: center; color: var(--ink-2); font-weight: 600; font-size: .95rem; }
+.media-card .go { width: 44px; height: 44px; border-radius: 50%; background: var(--bread); display: grid; place-items: center; color: var(--ink); }
+.ig-card { display: grid; gap: 28px; align-items: center; border-radius: var(--radius-lg); padding: clamp(28px, 5vw, 64px); color: #fff; }
+@media (min-width: 860px) { .ig-card { grid-template-columns: 1fr auto; } }
+.ig-card h2 { font-weight: 800; }
+.ig-card p { margin-top: 12px; max-width: 52ch; }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: min(100%, 360px); }
+.ig-grid img { border-radius: 14px; aspect-ratio: 1; object-fit: cover; }
+
+.contact-card { display: flex; flex-direction: column; gap: 14px; }
+.contact-card .btn { align-self: flex-start; margin-top: auto; }
+.email-big {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(1.15rem, 3vw, 2.2rem); text-decoration: none;
+  overflow-wrap: anywhere; background-image: linear-gradient(var(--bread), var(--bread)); background-size: 100% 4px; background-repeat: no-repeat; background-position: 0 100%;
+}
+.contact-meta { display: grid; gap: 12px; }
+.contact-meta div { display: flex; gap: 12px; align-items: center; font-weight: 600; }
+.contact-meta .icon { color: var(--sage-deep); }
+
+/* Footer */
+.site-footer { container-type: inline-size; background: var(--ink); color: var(--cream); margin: 0 auto 12px; width: min(100% - 2 * var(--gutter), 1440px); border-radius: var(--radius-lg); padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 72px) 28px; }
+.footer-grid { display: grid; gap: 40px; }
+@media (min-width: 900px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+.footer-brand { display: flex; gap: 18px; align-items: center; }
+.footer-brand img { width: 80px; height: 80px; border-radius: 50%; }
+.footer-brand strong { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; display: block; line-height: 1.1; }
+.site-footer p { color: rgba(251,245,231,.82); }
+.site-footer h3 { font-family: var(--font-body); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: var(--tan); margin-bottom: 14px; }
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.site-footer ul a { text-decoration: none; display: inline-block; padding: 4px 0; }
+.site-footer ul a:hover { color: var(--bread); }
+.footer-bottom { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(251,245,231,.16); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: .9rem; color: rgba(251,245,231,.7); }
+.footer-word { font: 800 6.4vw/0.85 var(--font-display); font-size: 6.9cqi; text-align: center; text-transform: uppercase; color: var(--sage); opacity: .9; margin-top: 48px; letter-spacing: .01em; white-space: nowrap; overflow: hidden; }
+
+/* Scroll reveal */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .pictogram .bowl { opacity: 1; transform: none; }
+  .bars .bar { width: var(--w); }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+
+<!-- Icon sprite (Lucide-style strokes) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke-width="3"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    <symbol id="i-bowl" viewBox="0 0 24 24"><path d="M2.5 12h19a9.5 8 0 0 1-19 0Z" fill="currentColor" stroke="none"/><path d="M9 3.5c-1 1.2 1 2.3 0 3.6M14.5 3.5c-1 1.2 1 2.3 0 3.6" stroke-width="1.8"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 1.5c.6 5.6 2.4 8.3 9 10.5-6.6 2.2-8.4 4.9-9 10.5-.6-5.6-2.4-8.3-9-10.5 6.6-2.2 8.4-4.9 9-10.5Z"/></symbol>
+    <!-- Three bread-scoring strokes: the doodle motif -->
+    <symbol id="d-scores" viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"><path d="M86 8c4 14 12 30 22 42"/><path d="M44 38c10 8 22 20 30 32"/><path d="M8 82c14 0 32 4 46 12"/></g></symbol>
+    <symbol id="d-underline" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M4 14C70 4 180 0 296 8" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <nav class="nav-primary" aria-label="Primary">
+      <a href="#/about">About</a>
+      <a href="#/impact">Our impact</a>
+      <a href="#/testimonials">Testimonials</a>
+      <a href="#/news">News &amp; media</a>
+    </nav>
+    <a class="brand" href="#/" aria-label="Second Harvest home">
+      <img src="assets/logo.jpg" alt="" width="60" height="60">
+      <span class="brand-name">Second<br>Harvest</span>
+    </a>
+    <div class="nav-secondary">
+      <a class="text-link hide-md" href="#/contact">Contact</a>
+      <a class="icon-btn hide-md" data-site="instagram" href="#/news" target="_blank" rel="noopener" aria-label="Second Harvest on Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+      <a class="btn btn-primary" href="#/start-a-chapter">Start a chapter</a>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg class="icon"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-overlay grain" id="menu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="menu-top">
+    <img src="assets/logo.jpg" alt="" width="56" height="56">
+    <button class="menu-btn" type="button" data-close-menu aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button>
+  </div>
+  <nav aria-label="All pages">
+    <ol>
+      <li><a href="#/">Home</a></li>
+      <li><a href="#/about">About us</a></li>
+      <li><a href="#/impact">Our impact</a></li>
+      <li><a href="#/start-a-chapter">Start a chapter</a></li>
+      <li><a href="#/testimonials">Testimonials</a></li>
+      <li><a href="#/news">News &amp; media</a></li>
+      <li><a href="#/contact">Contact</a></li>
+    </ol>
+  </nav>
+  <div class="menu-foot">
+    <a data-site="email" href="#/contact"><svg class="icon"><use href="#i-mail"/></svg><span data-site-text="email">Email us</span></a>
+    <a data-site="instagram" href="#/news" target="_blank" rel="noopener"><svg class="icon"><use href="#i-instagram"/></svg>Instagram</a>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Aldie &middot; Loudoun County, VA</span>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- =====================================================================
+     HOME
+     ===================================================================== -->
+<section class="page" data-route="" data-title="Second Harvest | Student-led food recovery in Loudoun County" tabindex="-1" aria-labelledby="home-title">
+
+  <div class="hero grain">
+    <p class="hero-kicker"><svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg> Youth-led &middot; Loudoun County, VA <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg></p>
+    <h1 class="wordmark" id="home-title"><span>Second</span> <span>Harvest</span></h1>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-intro">
+          <div class="hero-logo-wrap">
+            <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+            <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+            <img class="hero-logo" src="assets/logo-large.jpg" width="900" height="900" fetchpriority="high" alt="Second Harvest logo: a basket of bread inside a circle with the words Second Harvest">
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="pill-link hero-cta" href="#/start-a-chapter">Start a chapter at your school <span class="arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+        </div>
+      </div>
+
+      <!-- Photo slideshow: add or remove <figure class="slide"> blocks to change the photos -->
+      <div class="photo-col">
+      <section class="slideshow" aria-roledescription="carousel" aria-label="Photos of Second Harvest in action">
+        <div class="slide-track" aria-live="off">
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 7"><img src="assets/presenters-with-teacher.jpg" width="1400" height="1050" alt="Two Second Harvest ambassadors with a teacher in front of their Second Harvest presentation"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 7"><img src="assets/classroom-talk.jpg" width="1170" height="878" alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 7"><img src="assets/classroom-quiz.jpg" width="1170" height="878" alt="Ambassadors run a quiz on global hunger for an elementary class"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 7"><img src="assets/team.jpg" width="1200" height="900" alt="Students giving peace signs after a Second Harvest classroom visit"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="5 of 7"><img src="assets/classroom-lab.jpg" width="1160" height="1044" alt="Second Harvest ambassadors present to a full classroom of elementary students"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="6 of 7"><img src="assets/classroom-duo.jpg" width="1170" height="1055" alt="Two Second Harvest leaders present Quick Facts about hunger to young students"></figure>
+          <figure class="slide" role="group" aria-roledescription="slide" aria-label="7 of 7"><img src="assets/classroom-wide.jpg" width="1170" height="882" alt="An ambassador leads a lesson in front of a full elementary classroom"></figure>
+        </div>
+        <div class="slide-controls">
+          <span class="slide-dots"></span>
+          <button class="slide-pause" type="button" aria-label="Pause slideshow"><svg class="icon"><use href="#i-pause"/></svg></button>
+        </div>
+      </section>
+      <p class="hero-tagline">Students recovering surplus school cafeteria food for neighbors facing hunger in Loudoun County.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="creds">
+    <span><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>501(c)(3) nonprofit</span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Student-led since 2023</span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-handshake"/></svg>Delivering to Loudoun Hunger Relief</span>
+  </div>
+
+  <!-- Mission statement -->
+  <section class="section mission" aria-labelledby="mission-title">
+    <div class="wrap reveal">
+      <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> Our mission <svg class="spark"><use href="#i-spark"/></svg></p>
+      <!-- TODO: replace with your official mission statement if it differs -->
+      <h2 id="mission-title" style="margin-top:18px">Good food belongs on a plate, <b class="scribble">not in the trash<svg aria-hidden="true"><use href="#d-underline"/></svg></b>.</h2>
+      <p class="lede">Second Harvest recovers surplus school cafeteria food for neighbors facing hunger, and teaches the next generation that no good meal should go to waste.</p>
+    </div>
+  </section>
+
+  <!-- Short explanation -->
+  <section class="section section--wheat curve-top" aria-labelledby="what-title">
+    <div class="wrap split reveal">
+      <div class="stack">
+        <p class="eyebrow">What is Second Harvest?</p>
+        <div class="title-with-doodle">
+          <h2 id="what-title" class="h-xl">Started by students, <b>run by students</b>.</h2>
+          <svg class="doodle-inline" aria-hidden="true" style="position:absolute;right:0;top:-56px"><use href="#d-scores"/></svg>
+        </div>
+        <p class="lede">Every Friday, untouched and nutritious cafeteria meals were being thrown away at local high schools, while families in the same community went without. In 2023, three high school students set out to close that gap.</p>
+        <p class="lede">Today, student ambassadors across Loudoun County collect surplus cafeteria food for <strong>Loudoun Hunger Relief</strong> and visit elementary schools to teach younger students about food waste and food insecurity.</p>
+        <div class="btn-row" style="margin-top:28px">
+          <a class="btn btn-dark" href="#/about">Our story <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#/impact">See our impact</a>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="assets/classroom-talk.jpg" width="1170" height="878" loading="lazy"
+             alt="A Second Harvest ambassador presents food insecurity facts to an elementary school class">
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:clamp(48px,7vw,96px)">
+      <div class="grid grid-4">
+        <article class="card reveal"><div class="card-icon"><svg class="icon"><use href="#i-box"/></svg></div><h3>Donations</h3><p>Recovering surplus cafeteria food and delivering it to Loudoun Hunger Relief.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg class="icon"><use href="#i-book"/></svg></div><h3>Education</h3><p>Classroom lessons that teach elementary students about food waste and hunger.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg class="icon"><use href="#i-handshake"/></svg></div><h3>Partnerships</h3><p>Working with LCPS School Nutrition Services, schools and local food banks.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg class="icon"><use href="#i-megaphone"/></svg></div><h3>Awareness</h3><p>Sharing the story online and in the community so more people take action.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact statistics -->
+  <section class="section" aria-labelledby="stats-title">
+    <div class="wrap">
+      <div class="center stack reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <p class="eyebrow">Impact so far</p>
+        <h2 id="stats-title" class="h-xl">Small trays, <b class="scribble">big numbers<svg aria-hidden="true"><use href="#d-underline"/></svg></b></h2>
+      </div>
+      <div class="stats reveal">
+        <div class="stat stat--feature"><span class="stat-num">3,000+</span><span class="stat-label">pounds of food recovered</span></div>
+        <div class="stat"><span class="stat-num">~1,000</span><span class="stat-label">meals for neighbors</span></div>
+        <div class="stat stat--sage"><span class="stat-num">60+</span><span class="stat-label">student ambassadors</span></div>
+        <div class="stat"><span class="stat-num">7</span><span class="stat-label">Loudoun high schools</span></div>
+        <div class="stat"><span class="stat-num">800+</span><span class="stat-label">elementary students reached</span></div>
+      </div>
+      <div class="center" style="margin-top:32px"><a class="btn btn-ghost" href="#/impact">Explore our impact <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- Applications: Chapter / LCPS Ambassador -->
+  <section class="section section--wheat curve-top" id="apply" aria-labelledby="apply-title">
+    <div class="wrap">
+      <div class="split reveal" style="align-items:end">
+        <div class="stack">
+          <p class="eyebrow">Get involved</p>
+          <div class="title-with-doodle">
+            <h2 id="apply-title" class="h-xl">Bring Second Harvest <b>to your school</b>.</h2>
+          </div>
+        </div>
+        <p class="lede">Lead a chapter at your high school, or join as an LCPS ambassador and help with collections at a school that already has one. Pick a path:</p>
+      </div>
+
+      <div style="margin-top:36px" class="reveal">
+        <div class="toggle" role="tablist" aria-label="Choose an application">
+          <button type="button" role="tab" id="tab-chapter" aria-controls="panel-chapter" aria-selected="true">
+            <span class="tog-ico"><svg class="icon"><use href="#i-cap"/></svg></span>Start a chapter
+          </button>
+          <button type="button" role="tab" id="tab-ambassador" aria-controls="panel-ambassador" aria-selected="false" tabindex="-1">
+            <span class="tog-ico"><svg class="icon"><use href="#i-users"/></svg></span>LCPS ambassador
+          </button>
+        </div>
+
+        <div class="apply-panel" id="panel-chapter" role="tabpanel" aria-labelledby="tab-chapter">
+          <div class="apply-card">
+            <div class="stack">
+              <h3 class="h-lg">Chapter application</h3>
+              <p class="lede">For students who want to launch and lead Second Harvest at their high school.</p>
+              <ul class="checklist">
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Organize regular cafeteria food collections at your school</li>
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Recruit and lead a team of student ambassadors</li>
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Get training and support from the Second Harvest team</li>
+              </ul>
+            </div>
+            <div class="apply-aside grain">
+              <p class="h-md" style="font-family:var(--font-display);font-weight:700">Ready to lead?</p>
+              <p style="margin-top:10px">The application takes about 10 minutes. We'll follow up by email with next steps.</p>
+              <a class="btn btn-primary" data-site="chapterForm" href="#/contact" target="_blank" rel="noopener">Open chapter application <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              <p class="note">Want the details first? <a href="#/start-a-chapter">Read how chapters work</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="apply-panel" id="panel-ambassador" role="tabpanel" aria-labelledby="tab-ambassador" hidden>
+          <div class="apply-card">
+            <div class="stack">
+              <h3 class="h-lg">LCPS ambassador form</h3>
+              <p class="lede">For Loudoun County Public Schools students who want to volunteer with a Second Harvest chapter.</p>
+              <ul class="checklist">
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Help collect, weigh and pack surplus cafeteria food</li>
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Teach elementary students about food waste and hunger</li>
+                <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Join 60+ ambassadors making a difference across Loudoun</li>
+              </ul>
+            </div>
+            <div class="apply-aside grain">
+              <p class="h-md" style="font-family:var(--font-display);font-weight:700">Become an ambassador</p>
+              <p style="margin-top:10px">Tell us your school and availability, and we'll connect you with your local chapter.</p>
+              <a class="btn btn-primary" data-site="ambassadorForm" href="#/contact" target="_blank" rel="noopener">Open ambassador form <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              <p class="note">Questions? <a href="#/contact">Contact our team</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Photos">
+    <div class="wrap photo-strip reveal">
+      <img src="assets/classroom-quiz.jpg" width="1170" height="878" loading="lazy" alt="Ambassadors run a quiz on global hunger for an elementary class">
+      <img src="assets/presenters-with-teacher.jpg" width="1400" height="1050" loading="lazy" alt="Two Second Harvest ambassadors with a teacher in front of their Second Harvest presentation">
+      <img src="assets/classroom-lab.jpg" width="1160" height="1044" loading="lazy" alt="Second Harvest ambassadors present to a full classroom of elementary students">
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta-band grain reveal">
+      <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+      <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+      <h2>Your school,<br>our next harvest.</h2>
+      <p>Every chapter means more meals for Loudoun families and less good food in the trash.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#/start-a-chapter">Start a chapter <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#/contact">Partner with us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     ABOUT
+     ===================================================================== -->
+<section class="page" data-route="about" data-title="About us | Second Harvest" tabindex="-1" aria-labelledby="about-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> About us</p>
+    <h1 id="about-title">Our story</h1>
+    <p>Three students, one cafeteria problem, and a plan to make sure good food reaches the people who need it.</p>
+  </header>
+
+  <section class="section" aria-labelledby="story-title">
+    <div class="wrap split reveal">
+      <div class="stack">
+        <p class="eyebrow">How it started</p>
+        <h2 id="story-title" class="h-lg">It began with a <b class="scribble">Friday lunch<svg aria-hidden="true"><use href="#d-underline"/></svg></b>.</h2>
+        <p class="lede">Second Harvest was founded in 2023 by three students at the Academies of Loudoun, in the Academy of Engineering and Technology pathway. Looking for a project aligned with the United Nations Sustainable Development Goals, they chose Goal #2: <strong>Zero Hunger</strong>.</p>
+        <p class="lede">They noticed that every Friday, untouched and nutritious cafeteria meals were being thrown away, while families in the same community faced food insecurity. So they built a way to recover that food and get it to Loudoun Hunger Relief, the leading food bank in Northern Virginia.</p>
+        <div class="founders" aria-label="Founders">
+          <span class="chip">Swara Reddy</span><span class="chip">Anvi Borkar</span><span class="chip">Saanvi Celamkoti</span>
+        </div>
+      </div>
+      <div class="photo-card"><img src="assets/classroom-duo.jpg" width="1170" height="1055" loading="lazy" alt="Two Second Harvest leaders presenting to elementary students"></div>
+    </div>
+  </section>
+
+  <section class="section section--wheat curve-top" aria-labelledby="mv-title">
+    <div class="wrap">
+      <h2 id="mv-title" class="sr-only">Mission and vision</h2>
+      <!-- TODO: confirm the mission and vision wording -->
+      <div class="mv reveal">
+        <article class="card grain">
+          <p class="eyebrow" style="color:#fff">Mission</p>
+          <blockquote>Recover surplus school cafeteria food for neighbors facing hunger, and teach the next generation that no good meal should go to waste.</blockquote>
+        </article>
+        <article class="card">
+          <p class="eyebrow" style="color:var(--ink)">Vision</p>
+          <blockquote>A Loudoun County where no edible school meal is thrown away and no family goes hungry.</blockquote>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--wheat" style="padding-top:0" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="split reveal" style="align-items:end;margin-bottom:clamp(32px,5vw,56px)">
+        <div class="stack">
+          <p class="eyebrow">Why we exist</p>
+          <h2 id="why-title" class="h-lg">Hunger and food waste are <b>the same problem</b>, seen from two sides.</h2>
+        </div>
+        <p class="lede">These are the facts we share in elementary classrooms. Good food is thrown away every day while neighbors go without. Second Harvest connects the two.</p>
+      </div>
+      <!-- TODO: confirm these figures and their sources (they come from the classroom presentation) -->
+      <div class="facts reveal">
+        <div class="fact"><span class="stat-num">700,000</span><p>Virginians face food insecurity</p></div>
+        <div class="fact"><span class="stat-num">44 million</span><p>people in the U.S. lack enough food</p></div>
+        <div class="fact"><span class="stat-num">1 in 8</span><p>U.S. families are challenged with food issues</p></div>
+        <div class="fact"><span class="stat-num">1 in 5</span><p>U.S. children face hunger</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ops-title">
+    <div class="wrap">
+      <div class="center stack reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <p class="eyebrow">How we operate</p>
+        <h2 id="ops-title" class="h-xl">From cafeteria tray <b>to food bank</b></h2>
+        <p class="lede">Student ambassadors run every step, with support from LCPS School Nutrition Services and school staff.</p>
+      </div>
+      <ol class="steps steps-wide reveal">
+        <li><h3>Collect</h3><p>At each partner high school, ambassadors work with cafeteria staff to set aside untouched, unserved meals that would otherwise be thrown out.</p></li>
+        <li><h3>Log &amp; pack</h3><p>Food is weighed, recorded and packed safely so every pound is counted.</p></li>
+        <li><h3>Deliver</h3><p>Recovered food goes to Loudoun Hunger Relief, which gets it to families across the county.</p></li>
+        <li><h3>Teach</h3><p>Ambassadors visit elementary schools to teach younger students about food waste and food insecurity.</p></li>
+      </ol>
+      <div class="grid grid-4 reveal" style="margin-top:clamp(32px,5vw,56px)">
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-box"/></svg></div><h3>Donations</h3><p>Food recovery from school cafeterias.</p></div>
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-book"/></svg></div><h3>Education</h3><p>Lessons for elementary classrooms.</p></div>
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-handshake"/></svg></div><h3>Partnerships</h3><p>Schools, LCPS and local food banks.</p></div>
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-megaphone"/></svg></div><h3>Awareness</h3><p>Telling the story so others act.</p></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================================
+     IMPACT
+     ===================================================================== -->
+<section class="page" data-route="impact" data-title="Our impact | Second Harvest" tabindex="-1" aria-labelledby="impact-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> Our impact</p>
+    <h1 id="impact-title">By the numbers</h1>
+    <p>Every tray counts. Here's what student ambassadors have done since 2023.</p>
+  </header>
+
+  <section class="section" aria-label="Headline numbers">
+    <div class="wrap stats reveal">
+      <div class="stat stat--feature"><span class="stat-num">3,000+</span><span class="stat-label">pounds of food recovered</span></div>
+      <div class="stat"><span class="stat-num">~1,000</span><span class="stat-label">meals donated</span></div>
+      <div class="stat stat--sage"><span class="stat-num">60+</span><span class="stat-label">student ambassadors</span></div>
+      <div class="stat"><span class="stat-num">800+</span><span class="stat-label">elementary students reached</span></div>
+      <div class="stat"><span class="stat-num">+200%</span><span class="stat-label">membership growth last year</span></div>
+    </div>
+  </section>
+
+  <section class="section section--wheat curve-top" aria-labelledby="viz-title">
+    <div class="wrap stack-lg">
+      <div class="center stack reveal">
+        <p class="eyebrow">Impact visuals</p>
+        <h2 id="viz-title" class="h-xl">What <b>3,000 pounds</b> looks like</h2>
+      </div>
+
+      <figure class="viz-card reveal" style="margin:0">
+        <div class="viz-head">
+          <div>
+            <h3 class="h-md" style="font-weight:700">Nearly 1,000 meals recovered</h3>
+            <p>Food that would have been thrown away, delivered to Loudoun Hunger Relief instead.</p>
+          </div>
+          <span class="viz-key"><svg class="bowl" aria-hidden="true"><use href="#i-bowl"/></svg> = 10 meals</span>
+        </div>
+        <div class="pictogram" id="pictogram" role="img" aria-label="Pictogram: 100 bowls, each representing 10 meals, for nearly 1,000 meals recovered"></div>
+        <figcaption class="axis-note">Source: Second Harvest records, 2023 to present. 3,000+ lbs is roughly 1,000 meals.</figcaption>
+      </figure>
+
+      <figure class="viz-card reveal" style="margin:0">
+        <div class="viz-head">
+          <div>
+            <h3 class="h-md" style="font-weight:700">Membership tripled in one year</h3>
+            <p>Membership grew by more than 200% over the past year as new schools joined.</p>
+          </div>
+        </div>
+        <div class="bars" id="growth-bars">
+          <div class="bar-row"><span class="label">Last year</span><div class="bar-track"><div class="bar bar--muted" style="--w:33.3%" title="Last year: baseline membership (1×)">1×</div></div></div>
+          <div class="bar-row"><span class="label">This year</span><div class="bar-track"><div class="bar" style="--w:100%" title="This year: 3× last year's membership (+200%)">3×</div></div></div>
+        </div>
+        <figcaption class="axis-note">Relative membership, indexed to last year = 1×.</figcaption>
+        <table class="sr-only"><caption>Membership growth</caption><tr><th scope="col">Year</th><th scope="col">Membership (relative)</th></tr><tr><td>Last year</td><td>1×</td></tr><tr><td>This year</td><td>3× (+200%)</td></tr></table>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--wheat" style="padding-top:0" aria-labelledby="schools-title">
+    <div class="wrap stack-lg">
+      <div class="split reveal" style="align-items:end">
+        <div class="stack">
+          <p class="eyebrow">Where we work</p>
+          <h2 id="schools-title" class="h-lg"><b>7 high schools</b>, 60+ ambassadors</h2>
+        </div>
+        <p class="lede">Second Harvest runs food recovery at seven LCPS high schools, with student ambassadors at every one.</p>
+      </div>
+      <ul class="school-list reveal">
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>Briar Woods High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>Broad Run High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>Freedom High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>John Champe High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>Lightridge High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>Riverside High School</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-cap"/></svg></span>The Academies of Loudoun</li>
+      </ul>
+
+      <div class="split reveal" style="align-items:end;margin-top:clamp(24px,4vw,48px)">
+        <div class="stack">
+          <p class="eyebrow">In the classroom</p>
+          <h2 class="h-lg"><b>800+ elementary students</b> reached</h2>
+        </div>
+        <p class="lede">Ambassadors teach about food waste and food insecurity at partner elementary schools.</p>
+      </div>
+      <ul class="school-list reveal">
+        <li><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span>Goshen Post Elementary</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span>Mill Run Elementary</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span>Henrietta Lacks Elementary</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span>Arcola Elementary</li>
+        <li><span class="dot"><svg class="icon"><use href="#i-book"/></svg></span>Hutchinson Farm Elementary</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="timeline-title">
+    <div class="wrap split" style="align-items:start">
+      <div class="stack reveal sticky-col">
+        <p class="eyebrow">Milestones</p>
+        <h2 id="timeline-title" class="h-xl">Year <b>by year</b></h2>
+        <p class="lede">From one school's cafeteria to a county-wide student movement.</p>
+        <div class="photo-card" style="margin-top:28px"><img src="assets/classroom-wide.jpg" width="1170" height="882" loading="lazy" alt="Second Harvest lesson in an elementary classroom"></div>
+      </div>
+      <ol class="timeline reveal">
+        <li><span class="when">2023</span><h3>Second Harvest is founded</h3><p>Swara Reddy, Anvi Borkar and Saanvi Celamkoti launch Second Harvest at the Academies of Loudoun, inspired by UN SDG #2: Zero Hunger. Teacher Mr. Alec Loyd helps start the first chapter at ACL.</p></li>
+        <li><span class="when"><svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:currentColor;stroke:none"><use href="#i-spark"/></svg></span><h3>Growing to seven LCPS high schools</h3><p>Second Harvest expands across Loudoun County Public Schools, with support from LCPS Nutrition Manager Ms. Irene Stevens.</p></li>
+        <li><span class="when">2025</span><h3>Top 10 at StepUp Loudoun</h3><p>Second Harvest places in the top 10 at the StepUp Loudoun Youth Competition.</p></li>
+        <li><span class="when">Dec<br>2025</span><h3>Loudoun Times-Mirror top story</h3><p>Our work is featured as a top story in the Loudoun Times-Mirror.</p></li>
+        <li><span class="when">2026</span><h3>Top 10 again, and membership triples</h3><p>A second top-10 finish at StepUp Loudoun, membership up more than 200%, 800+ elementary students reached and 1,000+ Instagram followers.</p></li>
+        <li><span class="when">Today</span><h3>3,000+ pounds and counting</h3><p>Nearly 1,000 meals recovered for Loudoun Hunger Relief, and new chapters are always welcome.</p></li>
+      </ol>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================================
+     START A CHAPTER
+     ===================================================================== -->
+<section class="page" data-route="start-a-chapter" data-title="Start a chapter | Second Harvest" tabindex="-1" aria-labelledby="chapter-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> Get involved</p>
+    <h1 id="chapter-title">Start a chapter</h1>
+    <p>Turn your school's leftover lunches into meals for Loudoun families. We'll help you every step of the way.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:32px">
+      <a class="btn btn-primary" data-site="chapterForm" href="#/contact" target="_blank" rel="noopener">Apply now <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+    </div>
+  </header>
+
+  <!-- TODO: review the eligibility, requirements and FAQ wording below and adjust it to match your rules -->
+  <section class="section" aria-labelledby="who-title">
+    <div class="wrap grid grid-2 reveal">
+      <article class="card" style="background:var(--paper)">
+        <div class="card-icon"><svg class="icon"><use href="#i-users"/></svg></div>
+        <h2 id="who-title" class="h-md" style="font-weight:700;margin-bottom:12px">Who can start one?</h2>
+        <p>Any Loudoun County high school student who cares about hunger and food waste and is ready to lead. You don't need experience, just commitment and a few friends who want to help.</p>
+      </article>
+      <article class="card" style="background:var(--paper)">
+        <div class="card-icon"><svg class="icon"><use href="#i-heart"/></svg></div>
+        <h2 class="h-md" style="font-weight:700;margin-bottom:12px">What does a chapter do?</h2>
+        <p>Chapters recover surplus cafeteria food for Loudoun Hunger Relief, track every pound, visit elementary classrooms to teach about food waste, and spread the word at school and online.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--wheat curve-top" aria-labelledby="process-title">
+    <div class="wrap split" style="align-items:start">
+      <div class="stack reveal sticky-col">
+        <p class="eyebrow">Step by step</p>
+        <h2 id="process-title" class="h-xl">From idea to <b class="scribble">first pickup<svg aria-hidden="true"><use href="#d-underline"/></svg></b></h2>
+        <p class="lede">Most chapters go from application to their first collection in a few weeks.</p>
+      </div>
+      <ol class="steps reveal">
+        <li><h3>Apply</h3><p>Fill out the chapter application and tell us about your school and your team.</p></li>
+        <li><h3>Meet the team</h3><p>We'll set up a call to walk you through how Second Harvest works and answer your questions.</p></li>
+        <li><h3>Get approval &amp; a sponsor</h3><p>Find a faculty sponsor and connect with your school's administration and cafeteria manager.</p></li>
+        <li><h3>Recruit ambassadors</h3><p>Build a crew of student ambassadors to share collections, logging and outreach.</p></li>
+        <li><h3>Launch your first collection</h3><p>Start recovering food, log your pounds and celebrate your first delivery to Loudoun Hunger Relief.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--wheat" style="padding-top:0" aria-labelledby="req-title">
+    <div class="wrap">
+      <div class="apply-card reveal">
+        <div class="stack">
+          <p class="eyebrow">Requirements</p>
+          <h2 id="req-title" class="h-lg">What you'll need</h2>
+          <ul class="checklist">
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Be a current Loudoun County high school student</li>
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>A faculty sponsor at your school</li>
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Approval from your school's administration and cafeteria staff</li>
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>A starting team of at least a few committed ambassadors</li>
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Commitment to regular collections and logging pounds recovered</li>
+            <li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>Follow food safety guidelines on every pickup</li>
+          </ul>
+        </div>
+        <div class="apply-aside grain">
+          <p class="h-md" style="font-family:var(--font-display);font-weight:700">Application form</p>
+          <p style="margin-top:10px">Ready to bring Second Harvest to your school? Start your application today.</p>
+          <a class="btn btn-primary" data-site="chapterForm" href="#/contact" target="_blank" rel="noopener">Open chapter application <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+          <p class="note">Already in a chapter? <a href="#/" data-goto-ambassador>Use the LCPS ambassador form</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="wrap split" style="align-items:start">
+      <div class="stack reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title" class="h-xl">Questions, <b>answered</b></h2>
+        <p class="lede">Can't find what you need? Reach out and a member of our team will get back to you.</p>
+        <div class="card contact-card" style="background:var(--paper);margin-top:24px">
+          <h3>Contact the chapters team</h3>
+          <a class="email-big" data-site="email" data-subject="Starting a chapter" href="#/contact"><span data-site-text="email">Email us</span></a>
+          <a class="btn btn-dark" data-site="instagram" href="#/news" target="_blank" rel="noopener"><svg class="icon"><use href="#i-instagram"/></svg> DM us on Instagram</a>
+        </div>
+      </div>
+      <div class="faq reveal">
+        <details open><summary>Does it cost anything to start a chapter?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>No. Starting a Second Harvest chapter is free. We provide guidance, materials and support.</div></details>
+        <details><summary>How much time does it take?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>Collections usually take a short time after lunch on collection days. Leaders spend a bit more time coordinating the team and logging results.</div></details>
+        <details><summary>Is the food safe to donate?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>We only recover untouched, unserved food and follow food safety guidelines from LCPS School Nutrition Services and Loudoun Hunger Relief.</div></details>
+        <details><summary>Can I get volunteer hours?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>Ambassadors and chapter leaders can log their time with Second Harvest. Ask your school counselor how service hours are recorded at your school.</div></details>
+        <details><summary>My school isn't in Loudoun County. Can I still start a chapter?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>We're focused on Loudoun County right now, but we'd love to hear from you. Send us a message and tell us about your school.</div></details>
+        <details><summary>What's the difference between a chapter leader and an ambassador?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div>Chapter leaders start and run Second Harvest at their school. Ambassadors volunteer with an existing chapter, helping with collections and classroom visits.</div></details>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================================
+     TESTIMONIALS
+     ===================================================================== -->
+<section class="page" data-route="testimonials" data-title="Testimonials | Second Harvest" tabindex="-1" aria-labelledby="testimonials-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> Testimonials</p>
+    <h1 id="testimonials-title">In their words</h1>
+    <p>What partners, team members and sponsors say about working with Second Harvest.</p>
+  </header>
+
+  <section class="section" aria-label="Testimonials">
+    <div class="wrap">
+      <!--
+        TODO: replace each "slot" card with a real testimonial. Copy this template:
+        <figure class="card quote-card">
+          <div class="mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>Quote goes here.</blockquote>
+          <footer><span class="avatar"><svg class="icon"><use href="#i-users"/></svg></span><span>Full name<small>Role, organization</small></span></footer>
+        </figure>
+      -->
+      <div class="grid grid-3 reveal">
+        <figure class="card quote-card slot" style="margin:0">
+          <div class="mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>We're collecting stories from our <strong>partners</strong>, including food banks, schools and LCPS staff. Yours could be here.</blockquote>
+          <footer><span class="avatar"><svg class="icon"><use href="#i-handshake"/></svg></span><span>Partner testimonial<small>Coming soon</small></span></footer>
+        </figure>
+        <figure class="card quote-card slot" style="margin:0">
+          <div class="mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>Ambassadors and chapter leaders: what has Second Harvest meant to you? Tell us about your <strong>team</strong> experience.</blockquote>
+          <footer><span class="avatar"><svg class="icon"><use href="#i-users"/></svg></span><span>Team member testimonial<small>Coming soon</small></span></footer>
+        </figure>
+        <figure class="card quote-card slot" style="margin:0">
+          <div class="mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>Our <strong>sponsors</strong> make this work possible. We'd love to share why you support student-led food recovery.</blockquote>
+          <footer><span class="avatar"><svg class="icon"><use href="#i-heart"/></svg></span><span>Sponsor testimonial<small>Coming soon</small></span></footer>
+        </figure>
+      </div>
+      <div class="center" style="margin-top:36px">
+        <a class="btn btn-primary" data-site="email" data-subject="My Second Harvest testimonial" href="#/contact">Share your experience <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--wheat curve-top" aria-labelledby="thanks-title">
+    <div class="wrap">
+      <div class="center stack reveal" style="margin-bottom:clamp(32px,5vw,56px)">
+        <p class="eyebrow">With gratitude</p>
+        <h2 id="thanks-title" class="h-xl">People who <b>made it possible</b></h2>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-heart"/></svg></div><h3>Ms. Irene Stevens</h3><p>LCPS Nutrition Manager, a key supporter of cafeteria food recovery.</p></div>
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-cap"/></svg></div><h3>Mr. Alec Loyd</h3><p>Started the first Second Harvest chapter at the Academies of Loudoun.</p></div>
+        <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-handshake"/></svg></div><h3>Loudoun Hunger Relief</h3><p>Our food bank partner, getting recovered food to families across the county.</p></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================================
+     NEWS & MEDIA
+     ===================================================================== -->
+<section class="page" data-route="news" data-title="News & media | Second Harvest" tabindex="-1" aria-labelledby="news-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> News &amp; media</p>
+    <h1 id="news-title">In the news</h1>
+    <p>Press coverage, recognition and the latest from our Instagram.</p>
+  </header>
+
+  <section class="section" aria-label="Press coverage">
+    <div class="wrap grid grid-3 reveal">
+      <a class="card media-card" href="https://www.loudountimes.com/news/education/these-students-started-second-harvest-so-others-will-have-enough-to-eat/article_ee1c83af-4c0f-441c-a1a2-b9cc294a6dda.html" target="_blank" rel="noopener">
+        <span class="outlet">Loudoun Times-Mirror</span>
+        <h3>These students started Second Harvest so others will have enough to eat</h3>
+        <span class="meta">December 2025 <span class="go"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></span>
+      </a>
+      <a class="card media-card" href="https://southasianherald.com/lcps-students-take-lead-on-food-insecurity-and-food-waste/" target="_blank" rel="noopener">
+        <span class="outlet">South Asian Herald</span>
+        <h3>LCPS Students Take Lead on Food Insecurity and Food Waste</h3>
+        <span class="meta">May 13, 2026 <span class="go"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></span>
+      </a>
+      <div class="card media-card" style="background:var(--bread)">
+        <span class="outlet" style="color:var(--ink)">Recognition</span>
+        <h3>Top 10, StepUp Loudoun Youth Competition</h3>
+        <p style="color:var(--ink)">Recognized in both 2025 and 2026.</p>
+        <span class="meta" style="color:var(--ink)">2025 &amp; 2026 <span class="go" style="background:var(--paper)"><svg class="icon"><use href="#i-trophy"/></svg></span></span>
+      </div>
+      <!-- TODO: add more media links by copying one of the <a class="card media-card"> blocks above -->
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0" aria-labelledby="ig-title">
+    <div class="wrap">
+      <div class="ig-card grain reveal">
+        <div>
+          <p class="eyebrow" style="color:#fff"><svg class="icon" style="width:18px;height:18px"><use href="#i-instagram"/></svg> Instagram</p>
+          <h2 id="ig-title" class="h-xl" style="margin-top:14px">Follow the <b>harvest</b></h2>
+          <p>Join 1,000+ followers for collection updates, classroom visits and new chapter launches.</p>
+          <div class="btn-row" style="margin-top:28px">
+            <a class="btn btn-primary" data-site="instagram" href="#/contact" target="_blank" rel="noopener">Follow on Instagram <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+          </div>
+        </div>
+        <div class="ig-grid" aria-hidden="true">
+          <img src="assets/team.jpg" alt="" loading="lazy" width="1200" height="900">
+          <img src="assets/classroom-talk.jpg" alt="" loading="lazy" width="1170" height="878">
+          <img src="assets/classroom-duo.jpg" alt="" loading="lazy" width="1170" height="1055">
+          <img src="assets/classroom-wide.jpg" alt="" loading="lazy" width="1170" height="882">
+          <img src="assets/logo.jpg" alt="" loading="lazy" width="512" height="512">
+          <img src="assets/team.jpg" alt="" loading="lazy" width="1200" height="900" style="object-position:right">
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================================
+     CONTACT
+     ===================================================================== -->
+<section class="page" data-route="contact" data-title="Contact | Second Harvest" tabindex="-1" aria-labelledby="contact-title">
+  <header class="page-hero grain">
+    <svg class="doodle doodle-a" aria-hidden="true"><use href="#d-scores"/></svg>
+    <svg class="doodle doodle-b" aria-hidden="true"><use href="#d-scores"/></svg>
+    <p class="eyebrow"><svg class="spark"><use href="#i-spark"/></svg> Contact</p>
+    <h1 id="contact-title">Say hello</h1>
+    <p>Questions, ideas or partnership opportunities? We'd love to hear from you.</p>
+  </header>
+
+  <section class="section" aria-label="Ways to reach us">
+    <div class="wrap stack-lg">
+      <div class="center reveal">
+        <a class="email-big" data-site="email" href="#/contact"><span data-site-text="email">Email address coming soon</span></a>
+      </div>
+      <div class="grid grid-3 reveal">
+        <article class="card contact-card" style="background:var(--paper)">
+          <div class="card-icon"><svg class="icon"><use href="#i-mail"/></svg></div>
+          <h2 class="h-md" style="font-weight:700">General contact</h2>
+          <p>Questions about Second Harvest, volunteering or our programs.</p>
+          <a class="btn btn-dark" data-site="email" data-subject="General question" href="#/contact">Send a message <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card contact-card" style="background:var(--bread)">
+          <div class="card-icon" style="background:var(--paper);color:var(--crust)"><svg class="icon"><use href="#i-handshake"/></svg></div>
+          <h2 class="h-md" style="font-weight:700">Partnership inquiries</h2>
+          <p style="color:var(--ink)">Schools, food banks, businesses and sponsors: let's work together to fight hunger in Loudoun.</p>
+          <a class="btn btn-dark" data-site="email" data-subject="Partnership inquiry" href="#/contact">Propose a partnership <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card contact-card" style="background:var(--paper)">
+          <div class="card-icon"><svg class="icon"><use href="#i-cap"/></svg></div>
+          <h2 class="h-md" style="font-weight:700">Start a chapter</h2>
+          <p>Want to bring Second Harvest to your high school? Start here.</p>
+          <a class="btn btn-primary" href="#/start-a-chapter">Chapter info <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </article>
+      </div>
+      <div class="card reveal" style="background:var(--wheat)">
+        <div class="contact-meta">
+          <div><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Aldie &middot; Loudoun County, Virginia</div>
+          <div><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg> <a data-site="instagram" href="#/news" target="_blank" rel="noopener">Follow us on Instagram</a></div>
+          <div><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg> Second Harvest is a youth-led 501(c)(3) nonprofit organization.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="stack">
+      <div class="footer-brand">
+        <img src="assets/logo.jpg" alt="Second Harvest logo" width="80" height="80" loading="lazy">
+        <div><strong>Second Harvest</strong><span>Aldie &middot; Loudoun County, VA</span></div>
+      </div>
+      <p>A youth-led 501(c)(3) nonprofit recovering surplus school cafeteria food for Loudoun Hunger Relief and teaching students about food waste and hunger.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="#/about">About us</a></li>
+        <li><a href="#/impact">Our impact</a></li>
+        <li><a href="#/testimonials">Testimonials</a></li>
+        <li><a href="#/news">News &amp; media</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Get involved</h3>
+      <ul>
+        <li><a href="#/start-a-chapter">Start a chapter</a></li>
+        <li><a data-site="ambassadorForm" href="#/contact" target="_blank" rel="noopener">LCPS ambassador form</a></li>
+        <li><a href="#/contact">Contact &amp; partnerships</a></li>
+        <li><a data-site="instagram" href="#/news" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-word" aria-hidden="true">Second Harvest</div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year">2026</span> Second Harvest. All rights reserved.</span>
+    <a href="#top" style="text-decoration:none">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   SITE SETTINGS: fill these in and every button and link on the site updates.
+   ========================================================================== */
+const SITE = {
+  email: "secondharvest.va@gmail.com",
+  instagram: "https://www.instagram.com/secondharvestorg/",
+  chapterForm: "https://docs.google.com/forms/d/e/1FAIpQLSejsEj63CqE12hFAGWA9sx03M1tQOFnbDxb4yqMMITbZRd94w/viewform",
+  ambassadorForm: "https://docs.google.com/forms/d/1psXyws58QKIQEKZYdUTnc0SnCa-yct2DezLjP08FZ2s/viewform"
+};
+
+(function () {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- Wire up settings ---------------------------------------------------- */
+  document.querySelectorAll("[data-site]").forEach(el => {
+    const key = el.dataset.site, value = SITE[key];
+    if (!value) { el.removeAttribute("target"); el.title = "Link coming soon"; return; }
+    if (key === "email") {
+      el.href = "mailto:" + value + (el.dataset.subject ? "?subject=" + encodeURIComponent(el.dataset.subject) : "");
+      el.removeAttribute("target");
+    } else {
+      el.href = value;
+    }
+  });
+  document.querySelectorAll('[data-site-text="email"]').forEach(el => { if (SITE.email) el.textContent = SITE.email; });
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* --- Hash router: #/about, #/impact, ... --------------------------------- */
+  const pages = [...document.querySelectorAll(".page")];
+  const routeOf = () => {
+    const h = location.hash.replace(/^#\/?/, "");
+    return pages.some(p => p.dataset.route === h) ? h : "";
+  };
+  function show(first) {
+    const route = routeOf();
+    pages.forEach(p => p.classList.toggle("is-active", p.dataset.route === route));
+    const active = pages.find(p => p.dataset.route === route);
+    document.title = active.dataset.title;
+    document.querySelectorAll('a[href^="#/"]').forEach(a => {
+      const r = a.getAttribute("href").replace(/^#\/?/, "");
+      if (r === route) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    closeMenu(false);
+    if (!first) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      active.focus({ preventScroll: true });
+    }
+    revealIn(active);
+  }
+  window.addEventListener("hashchange", () => {
+    if (location.hash.startsWith("#/") || location.hash === "" ) show(false);
+  });
+
+  /* --- Menu overlay -------------------------------------------------------- */
+  const menu = document.getElementById("menu");
+  const openBtn = document.querySelector(".site-header .menu-btn");
+  function openMenu() {
+    menu.classList.add("is-open"); openBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    menu.querySelector("[data-close-menu]").focus();
+  }
+  function closeMenu(restoreFocus = true) {
+    if (!menu.classList.contains("is-open")) return;
+    menu.classList.remove("is-open"); openBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (restoreFocus) openBtn.focus();
+  }
+  openBtn.addEventListener("click", openMenu);
+  menu.querySelector("[data-close-menu]").addEventListener("click", () => closeMenu());
+  document.addEventListener("keydown", e => {
+    if (!menu.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeMenu();
+    if (e.key === "Tab") {
+      const f = [...menu.querySelectorAll("a[href], button")];
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* --- Header border on scroll --------------------------------------------- */
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  /* --- Application toggle (tabs) ------------------------------------------- */
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  function selectTab(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => selectTab(t));
+    t.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        selectTab(tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length], true);
+      }
+    });
+  });
+  document.querySelectorAll("[data-goto-ambassador]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    location.hash = "#/";
+    selectTab(document.getElementById("tab-ambassador"));
+    setTimeout(() => document.getElementById("apply").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }), 50);
+  }));
+
+  /* --- Hero slideshow: slides every 4s, loops, pauses on hover/focus ------ */
+  (function () {
+    const show = document.querySelector(".slideshow");
+    if (!show) return;
+    const track = show.querySelector(".slide-track");
+    const slides = [...track.children];
+    const n = slides.length;
+    const dotsWrap = show.querySelector(".slide-dots");
+    const pauseBtn = show.querySelector(".slide-pause");
+    track.appendChild(slides[0].cloneNode(true)).setAttribute("aria-hidden", "true");
+    let i = 0, timer = null, paused = reduceMotion, hovering = false;
+    const dots = slides.map((_, k) => {
+      const d = document.createElement("button");
+      d.type = "button"; d.className = "slide-dot"; d.setAttribute("aria-label", "Show photo " + (k + 1));
+      d.addEventListener("click", () => { go(k); restart(); });
+      dotsWrap.appendChild(d); return d;
+    });
+    function paint() { dots.forEach((d, k) => d.setAttribute("aria-current", k === i % n)); }
+    function go(k) { i = k; track.classList.remove("no-anim"); track.style.transform = "translateX(" + (-100 * i) + "%)"; paint(); }
+    track.addEventListener("transitionend", () => {
+      if (i === n) { track.classList.add("no-anim"); i = 0; track.style.transform = "translateX(0)"; paint(); }
+    });
+    function next() { if (document.hidden || !pages.find(p => p.dataset.route === "").classList.contains("is-active")) return; go(i + 1); }
+    function restart() { clearInterval(timer); timer = null; if (!paused && !hovering) timer = setInterval(next, 4000); }
+    function setPaused(v) {
+      paused = v;
+      pauseBtn.setAttribute("aria-label", v ? "Play slideshow" : "Pause slideshow");
+      pauseBtn.querySelector("use").setAttribute("href", v ? "#i-play" : "#i-pause");
+      restart();
+    }
+    pauseBtn.addEventListener("click", () => setPaused(!paused));
+    show.addEventListener("mouseenter", () => { hovering = true; restart(); });
+    show.addEventListener("mouseleave", () => { hovering = false; restart(); });
+    show.addEventListener("focusin", () => { hovering = true; restart(); });
+    show.addEventListener("focusout", () => { hovering = false; restart(); });
+    paint(); setPaused(paused);
+  })();
+
+  /* --- Pictogram: 100 bowls x 10 meals ------------------------------------- */
+  const pic = document.getElementById("pictogram");
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("class", "bowl"); s.setAttribute("aria-hidden", "true");
+    s.style.transitionDelay = (reduceMotion ? 0 : i * 12) + "ms";
+    s.innerHTML = '<use href="#i-bowl"/>';
+    pic.appendChild(s);
+  }
+
+  /* --- Scroll reveal ------------------------------------------------------- */
+  const io = "IntersectionObserver" in window && !reduceMotion
+    ? new IntersectionObserver(entries => entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      }), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" })
+    : null;
+  function revealIn(scope) {
+    scope.querySelectorAll(".reveal:not(.in), .pictogram:not(.in), .bars:not(.in)").forEach(el => {
+      if (io) io.observe(el); else el.classList.add("in");
+    });
+  }
+
+  show(true);
+})();
+</script>
+</body>
+</html>
