@@ -35,7 +35,11 @@ Search `index.html` for `TODO` to find:
 
 1. Merge this branch into `main`.
 2. On GitHub, go to **Settings → Pages**, then set **Source** to "Deploy from a branch", **Branch** to `main` and the folder to `/ (root)`.
-3. The site goes live at `https://secondharvestva.github.io/website/` within a minute or two.
+3. The site goes live at `https://secondharvestva.github.io/Website/` within a minute or two.
+
+## Custom domain
+
+The site is served at **https://secondharvestinitiative.org** (the `CNAME` file tells GitHub Pages the domain). DNS lives in Cloudflare: four `A` records on `@` pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`, plus a `CNAME` on `www` pointing to `secondharvestva.github.io`, all set to **DNS only** (grey cloud).
 
 ## Brand
 
